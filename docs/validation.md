@@ -100,7 +100,25 @@ published work lists definition-consistent contact-pressure validation as remain
 
 ![Shell convergence](../assets/shell-convergence.png)
 
-Element-level verification against classical benchmark problems and closed-form solutions:
+Element-level verification against classical benchmark problems and closed-form solutions. The
+schematics below show each load case before the numbers:
+
+<table>
+<tr align="center">
+<td width="20%"><img src="../assets/benchmarks/membrane-patch-model.png" width="100%"></td>
+<td width="20%"><img src="../assets/benchmarks/bending-patch-model.png" width="100%"></td>
+<td width="20%"><img src="../assets/benchmarks/straight-cantilever-model.png" width="100%"></td>
+<td width="20%"><img src="../assets/benchmarks/curved-cantilever-model.png" width="100%"></td>
+<td width="20%"><img src="../assets/benchmarks/pinched-cylinder-model.png" width="100%"></td>
+</tr>
+<tr align="center">
+<td><sub>Membrane patch</sub></td>
+<td><sub>Bending patch</sub></td>
+<td><sub>Straight cantilever</sub></td>
+<td><sub>Curved cantilever</sub></td>
+<td><sub>Pinched cylinder</sub></td>
+</tr>
+</table>
 
 | Benchmark | Reference | Reference is | MinuteSim | Difference |
 |---|---|---|---|---|

@@ -21,6 +21,32 @@ Publications: **[AS]** = [Applied Sciences 16(12), 5826](https://doi.org/10.3390
 
 ---
 
+## Canonical shell benchmark models
+
+The five element-level verification cases, as load-case schematics. Their measured results are in
+the shell table below and in [Validation](validation.md).
+
+<table>
+<tr align="center">
+<td width="20%"><img src="../assets/benchmarks/membrane-patch-model.png" width="100%"></td>
+<td width="20%"><img src="../assets/benchmarks/bending-patch-model.png" width="100%"></td>
+<td width="20%"><img src="../assets/benchmarks/straight-cantilever-model.png" width="100%"></td>
+<td width="20%"><img src="../assets/benchmarks/curved-cantilever-model.png" width="100%"></td>
+<td width="20%"><img src="../assets/benchmarks/pinched-cylinder-model.png" width="100%"></td>
+</tr>
+<tr align="center">
+<td><sub>Membrane patch</sub></td>
+<td><sub>Bending patch</sub></td>
+<td><sub>Straight cantilever</sub></td>
+<td><sub>Curved cantilever</sub></td>
+<td><sub>Pinched cylinder</sub></td>
+</tr>
+</table>
+
+No published model schematic exists for the Nakajima dome or for the solid cases, so those rows
+carry no thumbnail rather than an invented one. The solid hemisphere-compression geometry is shown
+in the result figure on the [README](../README.md).
+
 ## Shell benchmarks
 
 | Benchmark | Element | Model size | Purpose | Evidence | Precision | Publication |

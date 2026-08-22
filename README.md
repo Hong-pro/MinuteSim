@@ -108,45 +108,92 @@ makes no product-wide multiplier claim.
 
 ---
 
-## What MinuteSim Solves
+## What MinuteSim Supports
 
 <table>
 <tr>
-<td width="50%" valign="top">
+<th align="left">Area</th>
+<th align="left">Capability</th>
+<th align="left">Current support</th>
+</tr>
 
-<h3>Sheet-Metal Forming</h3>
+<tr>
+<td rowspan="2"><b>Elements</b></td>
+<td>Shell</td>
+<td>MITC4 fully integrated quadrilateral — <b>Validated</b></td>
+</tr>
+<tr>
+<td>Solid</td>
+<td>Tet4 — <b>Validated</b></td>
+</tr>
 
-GPU-resident explicit shell analysis for large-deformation forming.
+<tr>
+<td rowspan="4"><b>Materials</b></td>
+<td>Elastic</td>
+<td>Isotropic elasticity — <b>Validated</b></td>
+</tr>
+<tr>
+<td>Isotropic plasticity</td>
+<td>J2 with piecewise-linear / curve hardening — <b>Validated</b></td>
+</tr>
+<tr>
+<td>Planar anisotropy</td>
+<td><b>Barlat 89 planar anisotropy</b> — Supported</td>
+</tr>
+<tr>
+<td>Rigid</td>
+<td>Rigid tooling bodies — Supported</td>
+</tr>
 
-<ul>
-<li>MITC4 shell formulation</li>
-<li>Large-deformation kinematics</li>
-<li>Contact and friction</li>
-<li>Elastoplastic material response</li>
-<li>Adaptive local mesh refinement</li>
-<li>Shell thickness output</li>
-<li>Equivalent plastic strain output</li>
-</ul>
+<tr>
+<td><b>Large deformation</b></td>
+<td>Explicit large-strain kinematics</td>
+<td>Shell and solid — <b>Validated</b></td>
+</tr>
 
-</td>
-<td width="50%" valign="top">
+<tr>
+<td rowspan="2"><b>Contact</b></td>
+<td>Rigid-to-deformable</td>
+<td><b>Validated</b> against a closed-form contact solution</td>
+</tr>
+<tr>
+<td>Friction</td>
+<td>Coulomb friction — Supported</td>
+</tr>
 
-<h3>Solid Large-Deformation Analysis</h3>
+<tr>
+<td><b>Adaptive analysis</b></td>
+<td>Shell mesh refinement</td>
+<td>Adaptive local refinement during forming — Supported</td>
+</tr>
 
-GPU-resident explicit solid analysis for nonlinear deformation and contact.
+<tr>
+<td><b>Precision</b></td>
+<td>GPU precision</td>
+<td>FP32 and FP64 builds — <b>Validated</b> (FP32 vs FP64 comparison)</td>
+</tr>
 
-<ul>
-<li>Tetrahedral solid elements</li>
-<li>Elastoplastic response</li>
-<li>Rigid-to-deformable contact</li>
-<li>Large-deformation kinematics</li>
-<li>Scaling to millions of elements</li>
-<li>Single- and double-precision builds</li>
-</ul>
+<tr>
+<td rowspan="2"><b>Results</b></td>
+<td>Result fields</td>
+<td>Stress · equivalent plastic strain · shell thickness · displacement · velocity · contact force</td>
+</tr>
+<tr>
+<td>Output format</td>
+<td>XDMF index over HDF5 — Supported</td>
+</tr>
 
-</td>
+<tr>
+<td><b>GPU execution</b></td>
+<td>GPU-resident explicit solve</td>
+<td>NVIDIA GPUs, Volta or newer — <b>Validated</b></td>
 </tr>
 </table>
+
+<sub><b>Validated</b> means published evidence against an independent reference exists — see
+<a href="docs/validation.md">Validation</a>. <b>Supported</b> means the capability is implemented
+and reachable through documented keyword input, without an independent reference comparison.
+Capabilities under development are listed in the <a href="docs/roadmap.md">Roadmap</a>.</sub>
 
 ---
 
@@ -273,7 +320,8 @@ documentation and published evidence. For beta access or technical evaluation, p
 [Performance](docs/performance.md) ·
 [Validation](docs/validation.md) ·
 [Benchmarks](docs/benchmarks.md) ·
-[Publications](docs/publications.md)
+[Publications](docs/publications.md) ·
+[Roadmap](docs/roadmap.md)
 
 <sub>[Limitations](docs/limitations.md) ·
 [Documentation Governance](docs/DOCUMENTATION_GOVERNANCE.md)</sub>

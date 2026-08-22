@@ -137,6 +137,26 @@ Eight files sharing one provenance:
 
 Full rendering decisions and limitations: [`shell/srail/assets_manifest.md`](shell/srail/assets_manifest.md).
 
+### `benchmarks/*-model.png`
+
+Five canonical shell load-case schematics:
+`membrane-patch-model.png`, `bending-patch-model.png`, `straight-cantilever-model.png`,
+`curved-cantilever-model.png`, `pinched-cylinder-model.png`.
+
+| Field | Value |
+|---|---|
+| Type | **MinuteSim-authored schematic.** Not a publication figure and not a chart |
+| Source | Drawn by MinuteSim's own benchmark-figure script from the documented benchmark geometry and boundary conditions of each case |
+| Derivation | Downscaled to 900 px wide and re-encoded. No labels, numbers, or geometry were altered; nothing was added or removed |
+| Content | Geometry, restraints and applied load for the membrane patch, bending patch, straight cantilever, curved cantilever, and pinched-cylinder benchmarks |
+| Third-party material | **None.** These are original drawings of standard, publicly described benchmark problems. No figure, drawing, or panel from MacNeal & Harder, Belytschko et al., any textbook, or any commercial solver is reproduced |
+| Licence | MinuteSim's own work. No external licence applies and no CC BY attribution is required |
+| Note | The benchmark *problems* are classical and are attributed to their original sources in [Validation](../docs/validation.md); the *drawings* are MinuteSim's |
+
+No model schematic is published for the Nakajima dome benchmark or for the solid benchmarks,
+because no legitimate source figure exists for them. They are left without a thumbnail rather
+than illustrated with an invented one.
+
 ## Rules for adding a figure
 
 1. Record source, DOI, licence, derivation, content, axis treatment, and third-party status **before**
