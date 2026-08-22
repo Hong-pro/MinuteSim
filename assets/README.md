@@ -153,9 +153,28 @@ Five canonical shell load-case schematics:
 | Licence | MinuteSim's own work. No external licence applies and no CC BY attribution is required |
 | Note | The benchmark *problems* are classical and are attributed to their original sources in [Validation](../docs/validation.md); the *drawings* are MinuteSim's |
 
-No model schematic is published for the Nakajima dome benchmark or for the solid benchmarks,
-because no legitimate source figure exists for them. They are left without a thumbnail rather
-than illustrated with an invented one.
+### `benchmarks/nakajima-model.png`
+
+| Field | Value |
+|---|---|
+| Type | **Rendered model.** An actual render of the benchmark input, not a drawing |
+| Source | The 10,000-element Nakajima paper benchmark deck that accompanies the 0.9.0-beta.1 release, read read-only |
+| Derivation | Nodes and shell connectivity parsed from the deck, rendered with ParaView 6.1.0, cropped to content and downscaled to 1400 px wide. Geometry is the deck's, unaltered |
+| Content | Blank (10,000 elements, blue) with the hemispherical punch and die drawn translucent above it, in the undeformed setup position |
+| Third-party material | None. MinuteSim benchmark input only |
+| Licence | MinuteSim's own work. No external licence applies |
+
+### `benchmarks/flat-punch-contact-model.png`
+
+| Field | Value |
+|---|---|
+| Type | **MinuteSim-authored benchmark geometry schematic.** Not solver output, not a mesh screenshot, not a reconstructed result |
+| Source | Drawn from the published benchmark definition only: flat radius 20 mm, rounding radius 10 mm, 0.1 mm normal indentation |
+| Derivation | Original axisymmetric section drawing produced for this documentation. No figure or panel from any publication is reproduced |
+| Content | Rigid rounded flat punch above a deformable half-space, with the three published dimensions labelled |
+| Third-party material | None |
+| Licence | MinuteSim's own work. No external licence applies |
+| Note | It is labelled "Benchmark geometry schematic" wherever it appears, so it cannot be mistaken for a computed result |
 
 ## Rules for adding a figure
 

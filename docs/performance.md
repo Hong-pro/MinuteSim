@@ -26,6 +26,22 @@ It is marked as such where it appears.
 
 ## Solid — hemisphere compression
 
+<table>
+<tr>
+<td width="44%"><img src="../assets/solid-result.png" width="100%"></td>
+<td width="56%" valign="top">
+
+**Hemisphere compression scaling study**
+
+- Rigid punch against a deformable block, Tet4
+- Six mesh levels, 82,944 → 1,886,592 elements
+- NVIDIA L40, GPU FP32 against CPU FP64
+- Peak **137.6×** vs MinuteSim's single-thread CPU path
+
+</td>
+</tr>
+</table>
+
 ![Solid scaling](../assets/solid-scaling.png)
 
 ### Configuration
@@ -84,6 +100,26 @@ solid distributed-memory scaling.
 ---
 
 ## Shell — latest internal result
+
+<table>
+<tr>
+<td width="44%"><img src="../assets/benchmarks/nakajima-model.png" width="100%"><br>
+<sub>Nakajima dome model. The throughput deck uses the same geometry at ~505,000 elements.</sub></td>
+<td width="56%" valign="top">
+
+**Large-model Nakajima throughput**
+
+- ~505,000 shell elements
+- 15,808 explicit steps
+- **125.1 s** wall time
+- ≈ 224.8× per step vs the published LS-DYNA MPP 1-core timing
+
+This is a **throughput** measurement over a fixed step window, not a
+full-stroke forming run.
+
+</td>
+</tr>
+</table>
 
 ![Latest shell benchmark](../assets/shell-speedup.png)
 

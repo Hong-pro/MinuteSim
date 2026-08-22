@@ -38,10 +38,16 @@ force, draw-in, and draw beads are untested, and the published contact-pressure 
 active-contact-region diagnostic against a reconstructed pressure proxy, not a validated pressure
 field. Treat binder contact as unvalidated when evaluating MinuteSim for a real draw operation.
 
-**Solid validation covers normal contact and precision agreement.** A closed-form rounded-flat-punch
-comparison and a GPU/CPU precision study on a hemisphere compression model. The punch case evaluates
-the normal-contact response only — deformable-to-deformable contact, self-contact, and frictional
-sliding are outside it. There is no published solid validation against another commercial solver.
+**Published solid validation covers a Tet4 normal-contact benchmark against a closed-form
+reference.** It does not constitute general validation of all Tet4 applications, of all solid
+formulations, or of Tet10. Four distinct things should be kept apart:
+
+| | What it is | What it is not |
+|---|---|---|
+| Tet4 normal-contact validation | A closed-form rounded-flat-punch comparison — an independent analytical reference | Not a general Tet4 validation, and not a comparison against another commercial solver |
+| FP32 / FP64 agreement | MinuteSim's GPU path against MinuteSim's own CPU path on one hemisphere compression model | **Self-consistency, not accuracy validation** |
+| General solid validation | Not established. Deformable-to-deformable contact, self-contact and frictional sliding are outside the published evidence | — |
+| Tet10 | Implemented, but its stable-timestep basis is not validated for this solver and it is not the default | Not a validated or default-qualified element |
 
 **The published precision comparison should not be read as a universal guarantee.** It covers one
 model class; the published work notes residual significant-digit risk in near-rigid regimes and

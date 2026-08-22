@@ -12,7 +12,8 @@ and contact-intensive structural analysis on NVIDIA GPUs.**
 [Performance](docs/performance.md) ·
 [Validation](docs/validation.md) ·
 [Benchmarks](docs/benchmarks.md) ·
-[Publications](docs/publications.md)
+[Publications](docs/publications.md) ·
+[Roadmap](docs/roadmap.md)
 
 </div>
 
@@ -47,7 +48,7 @@ reported separately in [Validation](docs/validation.md).
 <td align="center" width="50%">
 <h1>≈220×</h1>
 <b>Shell GPU Speedup</b><br>
-<sub>Latest internal Nakajima benchmark</sub><br>
+<sub>Latest internal Nakajima throughput benchmark</sub><br>
 <sub>vs published LS-DYNA MPP R14.1 1-core timing</sub>
 </td>
 <td align="center" width="50%">
@@ -61,9 +62,8 @@ reported separately in [Validation](docs/validation.md).
 
 <div align="center">
 
-<h3>2.1 min</h3>
-
-**Full ~505,000-element shell forming benchmark**, 15,808 explicit steps<br>
+**Large-model Nakajima throughput benchmark**<br>
+~505,000 shell elements · 15,808 explicit steps · 125.1 s<br>
 <sub>Latest internal MinuteSim result — see benchmark scope below</sub>
 
 </div>
@@ -73,7 +73,7 @@ reported separately in [Validation](docs/validation.md).
 <td align="center" width="50%">
 <img src="assets/shell-speedup.png" alt="Latest shell benchmark: wall time and per-step speedup against published LS-DYNA reference timing" width="100%">
 <br>
-<b>Shell throughput</b><br>
+<b>Nakajima throughput</b><br>
 <sub>125.1 s wall time · per-step speedup vs published LS-DYNA reference</sub>
 </td>
 <td align="center" width="50%">
@@ -174,13 +174,17 @@ makes no product-wide multiplier claim.
 </tr>
 
 <tr>
-<td rowspan="2"><b>Results</b></td>
+<td rowspan="3"><b>Results</b></td>
 <td>Result fields</td>
 <td>Stress · equivalent plastic strain · shell thickness · displacement · velocity · contact force</td>
 </tr>
 <tr>
 <td>Output format</td>
 <td>XDMF index over HDF5 — Supported</td>
+</tr>
+<tr>
+<td>d3plot</td>
+<td>Not written by the solver. <code>*DATABASE_BINARY_D3PLOT</code> is read as an output-cadence setting only — see the <a href="docs/roadmap.md">Roadmap</a></td>
 </tr>
 
 <tr>
@@ -192,8 +196,13 @@ makes no product-wide multiplier claim.
 
 <sub><b>Validated</b> means published evidence against an independent reference exists — see
 <a href="docs/validation.md">Validation</a>. <b>Supported</b> means the capability is implemented
-and reachable through documented keyword input, without an independent reference comparison.
-Capabilities under development are listed in the <a href="docs/roadmap.md">Roadmap</a>.</sub>
+and reachable through documented keyword input, without an independent reference comparison.</sub>
+
+**Also implemented, qualification ongoing.** Tet10 solid elements, Barlat 89 planar anisotropy,
+adaptive shell refinement, additional shell formulations, and ductile damage exist in the product
+at various stages of qualification. The [Roadmap](docs/roadmap.md) lists each one with its
+implementation month, the evidence behind it, and its release status — implemented, validated and
+released are tracked as three separate things.
 
 ---
 

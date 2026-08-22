@@ -24,7 +24,26 @@ Sources: [Applied Sciences 16(12), 5826](https://doi.org/10.3390/app16125826) (s
 
 ### Nakajima forming validation against Abaqus/Explicit
 
-The primary shell validation is a Nakajima hemispherical-dome forming benchmark compared against
+<table>
+<tr>
+<td width="46%"><img src="../assets/benchmarks/nakajima-model.png" width="100%"></td>
+<td width="54%" valign="top">
+
+**Nakajima hemispherical-dome forming**
+
+- 520 × 520 mm blank, 1.0 mm thick
+- Hemispherical punch, radius 200 mm
+- 10,000 shell elements, 80 mm stroke
+- Reference: Abaqus/Explicit 2024 HF3, S4 shells
+
+**Result:** 2.95 % mean von Mises difference over 94 % of specimen
+elements; 2.08 % maximum thickness difference.
+
+</td>
+</tr>
+</table>
+
+The primary shell validation is a Nakajima hemispherical-dome benchmark compared against
 Abaqus/Explicit 2024 HF3 using S4 shells, in double precision.
 
 | Item | Value |
@@ -171,6 +190,25 @@ more sensitive than stress — about 0.7 % on the mean and 1.2 % on the maximum.
 
 ### Contact validation against a closed-form solution
 
+<table>
+<tr>
+<td width="46%"><img src="../assets/benchmarks/flat-punch-contact-model.png" width="100%"><br>
+<sub>Benchmark geometry schematic — not solver output</sub></td>
+<td width="54%" valign="top">
+
+**Rounded flat-punch normal contact**
+
+- Flat radius 20 mm, rounding radius 10 mm
+- 0.1 mm normal indentation
+- Quarter domain, coarse Tet4 mesh
+- Reference: closed-form contact solution
+
+**Result:** normal force +1.69 %, contact radius +1.0 %.
+
+</td>
+</tr>
+</table>
+
 The solid contact path is validated against a closed-form rounded-flat-punch normal-contact
 solution, evaluated via the MDR identity following Willert (2024, §5.2) — an independent analytical
 reference, not a solver-to-solver comparison. The analytical values were computed from that solution
@@ -194,6 +232,25 @@ consistency of the contact output is tight: the pressure–area integral and the
 contact force differ by 6.3 × 10⁻¹¹.
 
 ### Single- versus double-precision agreement
+
+<table>
+<tr>
+<td width="46%"><img src="../assets/solid-result.png" width="100%"></td>
+<td width="54%" valign="top">
+
+**Hemisphere compression**
+
+- Rigid punch against a deformable block
+- 162,000 Tet4 elements for this comparison
+- J2 elastoplastic, node-to-surface penalty contact
+
+**This is a self-consistency check**, GPU FP32 against MinuteSim's own
+CPU FP64 path on the identical model — not an independent accuracy
+comparison.
+
+</td>
+</tr>
+</table>
 
 ![Solid precision](../assets/solid-precision.png)
 

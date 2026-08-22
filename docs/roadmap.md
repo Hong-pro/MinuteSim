@@ -10,213 +10,208 @@ Target months for planned features may change as validation and release qualific
 <table>
 <tr align="center">
 <td>
-<b>2026-06</b><br>
-✅<br>
-<b>Published Core</b><br>
-<sub>Shell · solid · GPU explicit</sub>
+<b>2026-02</b><br>✅<br>
+<b>GPU Explicit Core</b><br>
+<sub>Shell · solid · CUDA backend</sub>
 </td>
 <td>→</td>
 <td>
-<b>2026-08</b><br>
-🟢<br>
+<b>2026-03</b><br>✅<br>
+<b>Contact &amp; Materials</b><br>
+<sub>Penalty contact · anisotropy · output</sub>
+</td>
+<td>→</td>
+<td>
+<b>2026-06</b><br>✅<br>
+<b>Peer-Reviewed</b><br>
+<sub>Shell and solid publications</sub>
+</td>
+<td>→</td>
+<td>
+<b>2026-07</b><br>🟢<br>
+<b>Adaptive Analysis</b><br>
+<sub>Shell refinement · formulation dispatch</sub>
+</td>
+<td>→</td>
+<td>
+<b>2026-08</b><br>✅<br>
 <b>0.9.0 Beta</b><br>
-<sub>Adaptive shell · forming workflow</sub>
+<sub>Release package · public documentation</sub>
 </td>
 <td>→</td>
 <td>
-<b>2026-08</b><br>
-✅<br>
-<b>Public Documentation</b><br>
-<sub>Validation · benchmarks · provenance</sub>
-</td>
-<td>→</td>
-<td>
-<b>TBD</b><br>
-🔵<br>
-<b>Capability Expansion</b><br>
+<b>TBD</b><br>🔵<br>
+<b>Qualification</b><br>
 <sub>Target month not yet approved</sub>
 </td>
 </tr>
 </table>
 
-## Status legend
+## How to read the status columns
 
-| Status | Meaning |
+A capability being **implemented** is not the same as its being **validated**, and neither is the
+same as its being **released** for public use. This page tracks the three separately.
+
+| Column | Meaning |
 |---|---|
-| ✅ Released | Publicly supported and documented |
-| 🟢 Implemented | Implemented and currently in beta qualification |
-| 🟡 Validation | Functional, but validation/release qualification is ongoing |
-| 🔵 Planned | Development target is defined |
-| ⚪ Future | Longer-term development direction |
-| TBD | Target month has not yet been approved |
+| **Implemented** | Month the capability first appears in the solver's own development history |
+| **Evidence** | What independent evidence exists for it today |
+| **Release** | How it is offered in the shipped product |
+
+| Evidence | Meaning |
+|---|---|
+| ✅ Published validation | An independent or reference comparison for this capability is published |
+| 📘 Published evidence | The capability was exercised, characterized or benchmarked in peer-reviewed work, but not independently validated as a standalone feature |
+| 🟡 Qualification ongoing | Functional; validation or release qualification in progress |
+| ⚪ No public evidence yet | No published evidence for this capability |
+
+| Release | Meaning |
+|---|---|
+| **Supported** | Documented public capability |
+| **Beta** | Ships, not fully qualified |
+| **Internal** | Present but not offered publicly |
+| **Not shipped** | Development tree only |
+
+The two are independent. A capability can be **Supported** on 📘 evidence: it is reachable,
+documented and exercised in published work, without a standalone independent validation of that
+feature on its own.
+
+Implementation months come from the solver's own version-control history. Where a capability was
+already present in the first recorded commit, the month is written **2026-02 or earlier** rather
+than estimated more precisely.
 
 ## Feature status
 
+### Published and supported
+
 <table>
 <tr>
-<th align="left">Area</th>
-<th align="left">Feature</th>
-<th align="left">Status</th>
-<th align="left">Completed / Target</th>
-<th align="left">Current state</th>
-<th align="left">Next milestone</th>
-</tr>
-
-<tr>
-<td rowspan="3"><b>Elements</b></td>
-<td>MITC4 shell</td>
-<td>✅ Released</td>
-<td>2026-06</td>
-<td>Published validation against Abaqus/Explicit</td>
-<td>Broader benchmark coverage</td>
+<th align="left">Area</th><th align="left">Capability</th><th align="left">Implemented</th>
+<th align="left">Evidence</th><th align="left">Release</th><th align="left">Next milestone</th><th align="left">Target month</th>
 </tr>
 <tr>
-<td>Tet4 solid</td>
-<td>✅ Released</td>
-<td>2026-06</td>
-<td>Published closed-form contact and scaling evidence</td>
-<td>Broader benchmark coverage</td>
+<td rowspan="2"><b>Elements</b></td>
+<td>MITC4 shell</td><td>2026-02 or earlier</td>
+<td>✅ Published validation — Abaqus/Explicit comparison</td><td><b>Supported</b></td><td>Broader benchmark coverage</td><td>—</td>
 </tr>
 <tr>
-<td>Additional element formulations</td>
-<td>⚪ Future</td>
-<td>TBD</td>
-<td>Outside the published capability set</td>
-<td>Target month not yet approved</td>
-</tr>
-
-<tr>
-<td rowspan="4"><b>Materials</b></td>
-<td>Isotropic elasticity</td>
-<td>✅ Released</td>
-<td>2026-06</td>
-<td>Canonical shell benchmark evidence</td>
-<td>—</td>
+<td>Tet4 solid</td><td>2026-02 or earlier</td>
+<td>✅ Published validation — closed-form normal contact</td><td><b>Supported</b></td><td>Broader benchmark coverage</td><td>—</td>
 </tr>
 <tr>
-<td>J2 plasticity, curve hardening</td>
-<td>✅ Released</td>
-<td>2026-06</td>
-<td>Published shell and solid benchmark evidence</td>
-<td>—</td>
+<td rowspan="2"><b>Materials</b></td>
+<td>Isotropic elasticity</td><td>2026-02 or earlier</td>
+<td>✅ Published validation — canonical shell benchmarks</td><td><b>Supported</b></td><td>—</td><td>—</td>
 </tr>
 <tr>
-<td><b>Barlat 89 planar anisotropy</b></td>
-<td>🟡 Validation</td>
-<td>TBD</td>
-<td>Implemented and exercised in the shipped S-rail demonstration deck; no published validation study</td>
-<td>Forming validation study</td>
+<td>J2 plasticity, curve hardening</td><td>2026-02 or earlier</td>
+<td>📘 Published evidence — exercised in the validated benchmarks; no standalone material validation</td><td><b>Supported</b></td><td>—</td><td>—</td>
 </tr>
 <tr>
-<td>Expanded anisotropic material support</td>
-<td>⚪ Future</td>
-<td>TBD</td>
-<td>Direction under consideration</td>
-<td>Target month not yet approved</td>
-</tr>
-
-<tr>
-<td rowspan="3"><b>Contact</b></td>
-<td>Rigid-to-deformable contact</td>
-<td>✅ Released</td>
-<td>2026-06</td>
-<td>Validated against a closed-form normal-contact solution</td>
-<td>Definition-consistent contact-pressure validation</td>
+<td rowspan="2"><b>Contact</b></td>
+<td>Rigid-to-deformable contact</td><td>2026-03</td>
+<td>✅ Published validation — closed-form normal contact</td><td><b>Supported</b></td><td>Definition-consistent contact-pressure validation</td><td>—</td>
 </tr>
 <tr>
-<td>Coulomb friction</td>
-<td>✅ Released</td>
-<td>2026-06</td>
-<td>Published friction sensitivity study</td>
-<td>—</td>
+<td>Coulomb friction</td><td>2026-03</td>
+<td>📘 Published evidence — sensitivity study, not independent validation</td><td><b>Supported</b></td><td>—</td><td>—</td>
 </tr>
-<tr>
-<td>Broader contact workflows</td>
-<td>⚪ Future</td>
-<td>TBD</td>
-<td>Direction under consideration</td>
-<td>Target month not yet approved</td>
-</tr>
-
-<tr>
-<td rowspan="2"><b>Adaptive analysis</b></td>
-<td>Shell local refinement</td>
-<td>🟢 Implemented</td>
-<td>2026-08</td>
-<td>Ships in the 0.9.0 beta; demonstrated on the S-rail full-stroke deck. No independent reference comparison is published</td>
-<td>Independent validation</td>
-</tr>
-<tr>
-<td>Adaptive analysis expansion</td>
-<td>⚪ Future</td>
-<td>TBD</td>
-<td>Direction under consideration</td>
-<td>Target month not yet approved</td>
-</tr>
-
 <tr>
 <td><b>Precision</b></td>
-<td>FP32 and FP64 builds</td>
-<td>✅ Released</td>
-<td>2026-06</td>
-<td>Published FP32-versus-FP64 field comparison</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td rowspan="2"><b>Output</b></td>
-<td>XDMF / HDF5 result output</td>
-<td>✅ Released</td>
-<td>2026-08</td>
-<td>Ships in the 0.9.0 beta package</td>
-<td>Post-processing improvements</td>
+<td>FP32 and FP64 builds</td><td>2026-02 or earlier</td>
+<td>📘 Published numerical comparison — self-consistency, not accuracy validation</td><td><b>Supported</b></td><td>—</td><td>—</td>
 </tr>
 <tr>
-<td>Pre- and post-processing improvements</td>
-<td>⚪ Future</td>
-<td>TBD</td>
-<td>Direction under consideration</td>
-<td>Target month not yet approved</td>
+<td><b>Output</b></td>
+<td>XDMF / HDF5 result output</td><td>2026-03</td>
+<td>📘 Published evidence — the published results were produced through it</td><td><b>Supported</b></td><td>Post-processing coverage</td><td>—</td>
+</tr>
+<tr>
+<td><b>GPU execution</b></td>
+<td>GPU-resident explicit solve</td><td>2026-02 or earlier</td>
+<td>📘 Published performance evidence — throughput and scaling</td><td><b>Supported</b></td><td>—</td><td>—</td>
 </tr>
 </table>
 
-## Current development
+### Implemented, qualification ongoing
 
-| Target month | Area | Development item | Status |
-|---|---|---|---|
-| TBD | Materials | Barlat 89 forming validation study | 🟡 Validation |
-| TBD | Adaptive analysis | Independent validation of shell local refinement | 🟡 Validation |
-| TBD | Contact | Definition-consistent contact-pressure validation | 🟡 Validation |
+<table>
+<tr>
+<th align="left">Area</th><th align="left">Capability</th><th align="left">Implemented</th>
+<th align="left">Evidence</th><th align="left">Release</th><th align="left">Next milestone</th><th align="left">Target month</th>
+</tr>
+<tr>
+<td rowspan="2"><b>Elements</b></td>
+<td>Tet10 solid</td><td>2026-02 or earlier</td>
+<td>⚪ No public evidence yet — stable-timestep validation deferred</td><td><b>Beta</b> — not the default</td>
+<td>Timestep validation, then default qualification</td><td>TBD</td>
+</tr>
+<tr>
+<td>Additional shell formulations</td><td>2026-07</td>
+<td>⚪ No public evidence yet</td><td><b>Internal</b></td>
+<td>Qualification not yet scheduled</td><td>TBD</td>
+</tr>
+<tr>
+<td rowspan="2"><b>Materials</b></td>
+<td>Barlat 89 planar anisotropy</td><td>2026-03</td>
+<td>🟡 Qualification ongoing — exercised in the shipped demonstration deck; formulation work continues</td><td><b>Beta</b></td>
+<td>Forming validation study</td><td>TBD</td>
+</tr>
+<tr>
+<td>Ductile damage / element erosion</td><td>2026-03</td>
+<td>⚪ No public evidence yet</td><td><b>Internal</b></td>
+<td>Qualification not yet scheduled</td><td>TBD</td>
+</tr>
+<tr>
+<td><b>Adaptive analysis</b></td>
+<td>Shell local refinement</td><td>2026-07</td>
+<td>🟡 Qualification ongoing — demonstrated on the shipped S-rail deck; no independent comparison</td><td><b>Beta</b></td>
+<td>Independent validation</td><td>TBD</td>
+</tr>
+<tr>
+<td><b>Output</b></td>
+<td>Offline solid HDF5 → d3plot conversion</td><td>2026-03</td>
+<td>⚪ Development utility; solid element data only</td><td><b>Not shipped</b></td>
+<td>See the output-format note below</td><td>TBD</td>
+</tr>
+</table>
 
-The three items above are open follow-ups identified by the published work and by the current
-beta capability set. **No approved target month exists for any of them yet**, so each is listed
-as TBD rather than given an estimated date.
+#### Output-format note
 
-## Planned development
+MinuteSim writes **XDMF over HDF5**. It does not write d3plot files. `*DATABASE_BINARY_D3PLOT` is
+accepted from the keyword deck, but only as an **output-cadence** setting — it schedules writes, it
+does not select a d3plot writer. An offline HDF5-to-d3plot converter exists in the development tree;
+it covers **solid element data only**, has no shell coverage, and is **not part of the release
+package**.
+
+| Capability | Shell | Solid | Current state | Shipped |
+|---|---|---|---|---|
+| `*DATABASE_BINARY_D3PLOT` keyword parsing | ✅ | ✅ | Output cadence only | ✅ |
+| Native d3plot writer | ✕ | ✕ | Does not exist | ✕ |
+| Offline HDF5 → d3plot conversion | ✕ | ✅ | Development tool, dormant since 2026-03 | ✕ |
+| XDMF / HDF5 output | ✅ | ✅ | Product output format | ✅ |
+
+### Planned
 
 | Target month | Area | Planned capability | Public objective |
 |---|---|---|---|
-| TBD | Elements | Additional element formulations | Broader structural application coverage |
-| TBD | Materials | Expanded anisotropic material support | Broader sheet-metal material coverage |
-| TBD | Contact | Broader contact workflows | Broader nonlinear application coverage |
-| TBD | Adaptive analysis | Adaptive analysis expansion | Wider forming-process coverage |
-| TBD | Tooling | Pre- and post-processing improvements | Faster engineering iteration |
+| TBD | Elements | Qualification of additional element formulations | Broader structural application coverage |
+| TBD | Materials | Barlat 89 forming validation study | Published anisotropic forming accuracy |
+| TBD | Adaptive analysis | Independent validation of shell refinement | Accuracy evidence for adaptive forming |
+| TBD | Contact | Definition-consistent contact-pressure validation | Closes an open item from the published work |
+| TBD | Output | Broader post-processing interoperability | Easier downstream workflow integration |
 
-These are development directions, not commitments. Target months are approved and published here
-only once they are set.
+No approved target month exists for any planned item, so each is listed as TBD rather than given an
+estimated date. These are development directions, not commitments.
 
 ## Completed milestones
 
 | Completed | Milestone | Evidence |
 |---|---|---|
 | 2026-08 | Public documentation, validation and benchmark record | This repository |
-| 2026-08 | MinuteSim 0.9.0 beta capability set — adaptive shell refinement, full-stroke forming workflow, FP32 and FP64 builds | Beta release package |
-| 2026-06 | Shell validation and throughput benchmarking published | [Applied Sciences 16(12), 5826](https://doi.org/10.3390/app16125826), 2026-06-09 |
+| 2026-08 | MinuteSim 0.9.0 beta release package — FP32 and FP64 builds, adaptive shell refinement, full-stroke forming demonstration deck | Beta release package |
+| 2026-07 | Adaptive shell refinement; shell formulation dispatch | Solver development history |
 | 2026-06 | Solid GPU-resident pipeline and scaling published | [JMMP 10(6), 197](https://doi.org/10.3390/jmmp10060197), 2026-06-03 |
-
-## How to read this page
-
-A capability being **implemented** is not the same as its being **validated**, and neither is the
-same as its being **publicly supported**. This roadmap separates the three, and
-[Validation](validation.md) carries the measured evidence behind every ✅ entry. Where a target
-month has not been approved, this page says TBD instead of estimating one.
+| 2026-06 | Shell validation and throughput benchmarking published | [Applied Sciences 16(12), 5826](https://doi.org/10.3390/app16125826), 2026-06-09 |
+| 2026-03 | Penalty contact; XDMF output; anisotropic and damage material work | Solver development history |
+| 2026-02 | GPU-resident explicit core with shell and solid elements | Solver development history |
