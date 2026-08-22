@@ -1,0 +1,77 @@
+# ---------------------------------------------------------------------------
+# MinuteSim public documentation repository — ignore list
+# Anything listed here is workspace-local and MUST NOT reach the public remote.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Local documentation governance / AI tooling — NOT published (decision 2026-08-22)
+#
+# The whole governance layer stays local. Publishing it would disclose the internal
+# review pipeline, the disclosure-classification machinery, and the complete list of
+# internal terms the leak scanner looks for — none of which improves MinuteSim's
+# technical credibility, and the last of which is a roadmap for anyone probing it.
+#
+# The publish-safe, human-readable summary of this governance lives in
+# docs/DOCUMENTATION_GOVERNANCE.md and IS published.
+# ---------------------------------------------------------------------------
+.claude/
+CLAUDE.md
+
+# ---------------------------------------------------------------------------
+# Never commit binaries, decks, or results copied out of the private repository
+# or out of a release package without an explicit disclosure decision.
+# ---------------------------------------------------------------------------
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.exe
+*.dll
+*.so
+*.dylib
+*.lib
+*.obj
+*.pdb
+
+# Solver input decks and result artifacts (publish only after review, then force-add)
+*.k
+*.key
+*.h5
+*.hdf5
+*.xdmf
+*.d3plot
+*.msh
+
+# Third-party manuals / papers — reference by citation and URL, never redistribute
+*.pdf
+*.docx
+
+# ---------------------------------------------------------------------------
+# Secrets and environment
+# ---------------------------------------------------------------------------
+.env
+.env.*
+secrets/
+*.pem
+*.pfx
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+
+# ---------------------------------------------------------------------------
+# OS / editor noise
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.vscode/
+.idea/
+
+# ---------------------------------------------------------------------------
+# Render intermediates (regenerable; see assets/shell/srail/assets_manifest.md)
+# ---------------------------------------------------------------------------
+_frames_*/
+__pycache__/
