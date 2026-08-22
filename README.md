@@ -24,13 +24,19 @@ and contact-intensive structural analysis on NVIDIA GPUs.**
 
 <img src="assets/srail-shell-thickness-animation.gif" alt="S-rail full-stroke shell forming: shell thickness developing through the draw on an adaptively refining mesh" width="88%">
 
-**S-rail full-stroke forming**<br>
-GPU explicit shell simulation with adaptive local refinement.
+**Full-stroke S-rail forming — 66.5 s (1.1 min)**<br>
+GPU explicit shell simulation with adaptive local refinement
+
+32,222 explicit steps
+
+**Deformable blank:** 675 → 6,963 shell elements<br>
+**Total model:** 1,940 → 8,228 shell elements
 
 </div>
 
-This is a MinuteSim shell simulation result. Independent accuracy evidence is reported
-separately in [Validation](docs/validation.md).
+This is a MinuteSim shell simulation result for this specific benchmark configuration, and a
+capability demonstration rather than an accuracy claim. Independent accuracy evidence is
+reported separately in [Validation](docs/validation.md).
 
 ---
 
