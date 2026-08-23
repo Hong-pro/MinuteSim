@@ -25,6 +25,17 @@ Implementation existing is not validation.
 
 ## 1. Validation scope
 
+Public validation rests on three families, and nothing outside them is validated:
+
+| Family | Reference it is compared against | Kind |
+|---|---|---|
+| Canonical shell benchmarks — patch tests, cantilevers, pinched cylinder | Closed-form elasticity and published textbook reference values | Independent validation and convergence |
+| Nakajima shell forming | Abaqus/Explicit 2024 HF3, S4 shells | Independent, code-to-code |
+| Tet4 rounded flat-punch normal contact | Closed-form contact solution | Independent, analytical |
+
+Everything else — including the GPU FP32 versus CPU FP64 comparison — is either self-consistency or
+outside published evidence. The rest of this section states the boundaries of each family.
+
 **Shell validation covers the Nakajima hemispherical-dome family, and it is code-to-code.** One
 forming operation, one material model, one thickness, at the documented mesh sizes, compared against
 another solver rather than against experiment. The published work states it should be read as

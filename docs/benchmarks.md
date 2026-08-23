@@ -31,14 +31,14 @@ Publications: **[AS]** = [Applied Sciences 16(12), 5826](https://doi.org/10.3390
 <tr><td>Large-model throughput deck</td><td>MITC4</td><td>~505,000</td><td><a href="performance.md">Performance →</a></td></tr>
 
 <tr>
-<td rowspan="3" align="center"><img src="../assets/solid-result.png" width="100%"><br><sub>Hemisphere compression</sub></td>
+<td rowspan="3" align="center"><img src="../assets/solid-result.png" width="100%"><br><sub>Hemisphere compression<br>JMMP Fig. 2</sub></td>
 <td>Mesh-scaling study</td><td>Tet4</td><td>82,944 → 1,886,592</td><td><a href="performance.md">Performance →</a></td>
 </tr>
 <tr><td>Contact-overhead study</td><td>Tet4</td><td>162,000 / 384,000 / 998,250</td><td><a href="performance.md">Performance →</a></td></tr>
 <tr><td>GPU FP32 vs CPU FP64 self-consistency</td><td>Tet4</td><td>162,000</td><td><a href="validation.md">Validation →</a></td></tr>
 
 <tr>
-<td align="center"><img src="../assets/benchmarks/flat-punch-contact-model.png" width="100%"><br><sub>Rounded flat punch<br>geometry schematic</sub></td>
+<td align="center"><img src="../assets/benchmarks/jmmp-flat-punch-figure-a1.png" width="100%"><br><sub>Rounded flat punch<br>JMMP Fig. A1</sub></td>
 <td>Closed-form contact validation</td><td>Tet4</td><td>Coarse quarter domain</td>
 <td><a href="validation.md">Validation →</a></td>
 </tr>
@@ -52,6 +52,10 @@ Publications: **[AS]** = [Applied Sciences 16(12), 5826](https://doi.org/10.3390
 
 The S-rail case is a **capability demonstration**. No reference solution is compared against it, so
 it produces no accuracy or speedup claim.
+
+Thumbnails marked with a figure number are the published figures, reproduced under CC BY 4.0 —
+see [figure provenance](../assets/README.md). The Nakajima thumbnail is a render of the actual
+release benchmark deck.
 
 ---
 
@@ -96,21 +100,21 @@ Each case with its evidence class. Measured numbers are **not** repeated here �
 
 ### Shell benchmarks
 
-| Benchmark | Element | Model size | Purpose | Precision | Publication |
-|---|---|---|---|---|---|
-| Membrane patch test | MITC4 | 1 element | `VALIDATION` | FP64 | [AS] |
-| Bending patch test | MITC4 | 1 element | `SELF-CONSISTENCY` | FP64 | [AS] |
-| Straight cantilever, force-driven | MITC4 | 1 × 6 | `VALIDATION` | FP64 | [AS] |
-| Curved cantilever, in/out-of-plane shear | MITC4 | 5 elements along the arc | `VALIDATION` | FP64 | [AS] |
-| Pinched cylinder with end diaphragms | MITC4 | 4×4 → 32×32 octant | `CONVERGENCE` | FP64 | [AS] |
-| Nakajima hemispherical dome | MITC4 | 10,000 | `VALIDATION` | FP64 | [AS] |
-| Nakajima contact pressure | MITC4 | 10,000 | `DIAGNOSTIC` | FP64 | [AS] |
-| Nakajima mesh sensitivity | MITC4 | ~4,900 / 10,000 / ~19,900 | `CONVERGENCE` | FP64 | [AS] |
-| Nakajima friction sensitivity | MITC4 | 10,000 | `SELF-CONSISTENCY` | FP64 | [AS] |
-| Nakajima penalty-scale sensitivity | MITC4 | 10,000 | `SELF-CONSISTENCY` | FP64 | [AS] |
-| Nakajima intermediate mesh, 40 mm stroke | MITC4 | ~50,000 | `INSUFFICIENT EVIDENCE` | FP64 | [AS] |
-| Nakajima intermediate mesh, 80 mm stroke | MITC4 | 50,176 | `VALIDATION` | FP64 | [AS] |
-| Nakajima throughput deck | MITC4 | ~505,000 | `THROUGHPUT` | FP64 | [AS] |
+| Benchmark | Element | Model size | Purpose | Precision | Publication | Details |
+|---|---|---|---|---|---|---|
+| Membrane patch test | MITC4 | 1 element | `VALIDATION` | FP64 | [AS] | [Validation →](validation.md) |
+| Bending patch test | MITC4 | 1 element | `SELF-CONSISTENCY` | FP64 | [AS] | [Validation →](validation.md) |
+| Straight cantilever, force-driven | MITC4 | 1 × 6 | `VALIDATION` | FP64 | [AS] | [Validation →](validation.md) |
+| Curved cantilever, in/out-of-plane shear | MITC4 | 5 elements along the arc | `VALIDATION` | FP64 | [AS] | [Validation →](validation.md) |
+| Pinched cylinder with end diaphragms | MITC4 | 4×4 → 32×32 octant | `CONVERGENCE` | FP64 | [AS] | [Validation →](validation.md) |
+| Nakajima hemispherical dome | MITC4 | 10,000 | `VALIDATION` | FP64 | [AS] | [Validation →](validation.md) |
+| Nakajima contact pressure | MITC4 | 10,000 | `DIAGNOSTIC` | FP64 | [AS] | [Validation →](validation.md) |
+| Nakajima mesh sensitivity | MITC4 | ~4,900 / 10,000 / ~19,900 | `CONVERGENCE` | FP64 | [AS] | [Validation →](validation.md) |
+| Nakajima friction sensitivity | MITC4 | 10,000 | `SELF-CONSISTENCY` | FP64 | [AS] | [Validation →](validation.md) |
+| Nakajima penalty-scale sensitivity | MITC4 | 10,000 | `SELF-CONSISTENCY` | FP64 | [AS] | [Validation →](validation.md) |
+| Nakajima intermediate mesh, 40 mm stroke | MITC4 | ~50,000 | `INSUFFICIENT EVIDENCE` | FP64 | [AS] | [Validation →](validation.md) |
+| Nakajima intermediate mesh, 80 mm stroke | MITC4 | 50,176 | `VALIDATION` | FP64 | [AS] | [Validation →](validation.md) |
+| Nakajima throughput deck | MITC4 | ~505,000 | `THROUGHPUT` | FP64 | [AS] | [Performance →](performance.md) |
 
 The intermediate-mesh cross-code result is published at the 80 mm production stroke only.
 
@@ -130,18 +134,18 @@ Nakajima remains the shell **validation** benchmark and the basis of every accur
 
 ### Solid benchmarks
 
-| Benchmark | Element | Model size | Purpose | Precision | Publication |
-|---|---|---|---|---|---|
-| Rounded flat-punch contact | Tet4 | Coarse quarter domain | `VALIDATION` | FP32 | [JMMP] |
-| Hemisphere compression, L1 | Tet4 | 82,944 | `SCALING` | FP32 | [JMMP] |
-| Hemisphere compression, L2 | Tet4 | 162,000 | `SCALING` | FP32 | [JMMP] |
-| Hemisphere compression, L3 | Tet4 | 384,000 | `SCALING` | FP32 | [JMMP] |
-| Hemisphere compression, L4 | Tet4 | 750,000 | `SCALING` | FP32 | [JMMP] |
-| Hemisphere compression, L5 | Tet4 | 998,250 | `SCALING` | FP32 | [JMMP] |
-| Hemisphere compression, L6 | Tet4 | 1,886,592 | `SCALING` | FP32 | [JMMP] |
-| Hemisphere compression vs LS-DYNA SMP | Tet4 | 1,886,592 | `THROUGHPUT` | FP32 | [JMMP] |
-| Precision comparison | Tet4 | 162,000 | `SELF-CONSISTENCY` | FP32 vs FP64 | [JMMP] |
-| Contact overhead | Tet4 | 162,000 / 384,000 / 998,250 | `SCALING` | FP32 | [JMMP] |
+| Benchmark | Element | Model size | Purpose | Precision | Publication | Details |
+|---|---|---|---|---|---|---|
+| Rounded flat-punch contact | Tet4 | Coarse quarter domain | `VALIDATION` | FP32 | [JMMP] | [Validation →](validation.md) |
+| Hemisphere compression, L1 | Tet4 | 82,944 | `SCALING` | FP32 | [JMMP] | [Performance →](performance.md) |
+| Hemisphere compression, L2 | Tet4 | 162,000 | `SCALING` | FP32 | [JMMP] | [Performance →](performance.md) |
+| Hemisphere compression, L3 | Tet4 | 384,000 | `SCALING` | FP32 | [JMMP] | [Performance →](performance.md) |
+| Hemisphere compression, L4 | Tet4 | 750,000 | `SCALING` | FP32 | [JMMP] | [Performance →](performance.md) |
+| Hemisphere compression, L5 | Tet4 | 998,250 | `SCALING` | FP32 | [JMMP] | [Performance →](performance.md) |
+| Hemisphere compression, L6 | Tet4 | 1,886,592 | `SCALING` | FP32 | [JMMP] | [Performance →](performance.md) |
+| Hemisphere compression vs LS-DYNA SMP | Tet4 | 1,886,592 | `THROUGHPUT` | FP32 | [JMMP] | [Performance →](performance.md) |
+| Precision comparison | Tet4 | 162,000 | `SELF-CONSISTENCY` | FP32 vs FP64 | [JMMP] | [Validation →](validation.md) |
+| Contact overhead | Tet4 | 162,000 / 384,000 / 998,250 | `SCALING` | FP32 | [JMMP] | [Performance →](performance.md) |
 
 ## Hardware
 

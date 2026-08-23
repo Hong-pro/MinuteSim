@@ -172,7 +172,7 @@ than estimated more precisely.
 <td><b>Output</b></td>
 <td>Offline solid HDF5 → d3plot conversion</td><td>2026-03</td>
 <td>⚪ Development utility; solid element data only</td><td><b>Not shipped</b></td>
-<td>See the output-format note below</td><td>TBD</td>
+<td>Post-processing interoperability review</td><td>TBD</td>
 </tr>
 </table>
 

@@ -106,17 +106,19 @@ article ("© 2026 by the authors").
 | Third-party material | None. MinuteSim results only |
 | Licence | CC BY 4.0. Authors: H. Kim, S. Hong, N. Kim; © 2026 the authors |
 
-### `solid-result.png`
+### `solid-result.png` — published JMMP Figure 2
 
 | Field | Value |
 |---|---|
-| Type | **Reproduced** author-created figure |
-| Source | **JMMP**, Figure 2 (hemisphere compression benchmark) |
+| Type | **Published article figure** |
+| Source figure | **Figure 2**, *JMMP* 10(6), 197, 2026, article p. 6 (hemisphere compression benchmark) |
+| Authors | H. Kim, S. Hong, N. Kim |
 | DOI | [10.3390/jmmp10060197](https://doi.org/10.3390/jmmp10060197) |
-| Derivation | Used as published, unmodified |
+| Verification | Checked against the official publisher PDF from `res.mdpi.com` on 2026-08-23. The image embedded in article p. 6 is 4987 × 3731, and the SHA-256 of its decoded pixel data matches this asset exactly. The repository file **is** the published figure graphic, bit-for-bit at the pixel level |
 | Content | Initial and deformed configuration of the hemisphere compression model, with the effective plastic strain field |
+| Derivation | The figure graphic itself, unmodified — not cropped, not rescaled. The published page additionally carries the "(a) Initial configuration / (b) Deformed configuration" captions as page text; those are not part of this asset |
 | Third-party material | None. No third-party interface elements or vendor branding appear in the image |
-| Licence | CC BY 4.0. Authors: H. Kim, S. Hong, N. Kim; © 2026 the authors |
+| Licence | CC BY 4.0. © 2026 the authors |
 
 ### `srail-shell-*.png`, `srail-shell-*-animation.gif`, `srail-shell-*-animation.mp4`
 
@@ -175,6 +177,29 @@ Five canonical shell load-case schematics:
 | Third-party material | None |
 | Licence | MinuteSim's own work. No external licence applies |
 | Note | It is labelled "Benchmark geometry schematic" wherever it appears, so it cannot be mistaken for a computed result |
+
+### Published article figures — `benchmarks/applsci-*`, `benchmarks/jmmp-*`
+
+Three figures extracted from the official publisher PDFs. Retrieved 2026-08-23 from MDPI's own
+content host (`res.mdpi.com`) — not from a search-engine result, an aggregator, or any third-party
+mirror. Open-access status and the CC BY licence were confirmed independently through Unpaywall
+(`license: cc-by`, `host_type: publisher`) and from the licence statement printed in each article
+("© 2026 by the authors ... Creative Commons Attribution (CC BY) license").
+
+| Field | `applsci-nakajima-figure3.png` | `applsci-nakajima-figure4.png` | `jmmp-flat-punch-figure-a1.png` |
+|---|---|---|---|
+| Type | **Published article figure** | **Published article figure** | **Published article figure** |
+| Publication | A GPU-Resident MITC4 Shell Solver for a Nakajima Hemispherical-Dome Forming Benchmark: Verification, Abaqus Validation, and LS-DYNA Throughput Benchmarking | *(same article)* | Design and Computational Efficiency of a GPU-Resident Integrated Execution Pipeline for Explicit Large-Deformation Finite Element Analysis |
+| Authors | H. Kim, S. Hong, N. Kim | H. Kim, S. Hong, N. Kim | H. Kim, S. Hong, N. Kim |
+| Journal / year | *Applied Sciences* 16(12), 5826, 2026 | *Applied Sciences* 16(12), 5826, 2026 | *JMMP* 10(6), 197, 2026 |
+| DOI | [10.3390/app16125826](https://doi.org/10.3390/app16125826) | [10.3390/app16125826](https://doi.org/10.3390/app16125826) | [10.3390/jmmp10060197](https://doi.org/10.3390/jmmp10060197) |
+| Source figure | **Figure 3**, article p. 9 | **Figure 4**, article p. 13 | **Figure A1**, article p. 17 |
+| Source | Official publisher PDF, `res.mdpi.com` | Official publisher PDF, `res.mdpi.com` | Official publisher PDF, `res.mdpi.com` |
+| Licence | CC BY 4.0, © 2026 the authors | CC BY 4.0, © 2026 the authors | CC BY 4.0, © 2026 the authors |
+| Modifications | **Cropped** to the figure area of the page and re-encoded as PNG at 300 dpi. The caption line below the figure is outside the crop | **Cropped** and re-encoded as PNG at 300 dpi. All six panels and both colour bars are inside the crop | **Cropped** and re-encoded as PNG at 300 dpi |
+| Content altered | **No.** No numerical value, curve, label, axis, colour scale or panel was edited, added or removed | **No** | **No** |
+
+These are **not** labelled unmodified: each one is a crop of its article page.
 
 ## Rules for adding a figure
 

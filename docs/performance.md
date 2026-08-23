@@ -28,7 +28,8 @@ It is marked as such where it appears.
 
 <table>
 <tr>
-<td width="44%"><img src="../assets/solid-result.png" width="100%"></td>
+<td width="44%"><img src="../assets/solid-result.png" width="100%"><br>
+<sub>Published benchmark model — JMMP 2026, Figure 2 (CC BY 4.0)</sub></td>
 <td width="56%" valign="top">
 
 **Hemisphere compression scaling study**

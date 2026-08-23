@@ -24,9 +24,15 @@ Sources: [Applied Sciences 16(12), 5826](https://doi.org/10.3390/app16125826) (s
 
 ### Nakajima forming validation against Abaqus/Explicit
 
+<img src="../assets/benchmarks/applsci-nakajima-figure3.png" width="100%">
+
+<sub>**Published benchmark geometry and boundary conditions** — Applied Sciences 2026, Figure 3.
+Reproduced under CC BY 4.0; cropped from the article page and re-encoded.</sub>
+
 <table>
 <tr>
-<td width="46%"><img src="../assets/benchmarks/nakajima-model.png" width="100%"></td>
+<td width="46%"><img src="../assets/benchmarks/nakajima-model.png" width="100%"><br>
+<sub>Actual public benchmark model, rendered from the release deck</sub></td>
 <td width="54%" valign="top">
 
 **Nakajima hemispherical-dome forming**
@@ -42,6 +48,13 @@ elements; 2.08 % maximum thickness difference.
 </td>
 </tr>
 </table>
+
+<img src="../assets/benchmarks/applsci-nakajima-figure4.png" width="100%">
+
+<sub>**Published Abaqus/Explicit–MinuteSim field comparison at 80 mm stroke** — Applied Sciences
+2026, Figure 4. Panels (a,b) shell thickness, (c,d) von Mises stress, (e,f) equivalent plastic
+strain; left column Abaqus/Explicit, right column MinuteSim. Quantitative validation metrics are
+reported below. Reproduced under CC BY 4.0; cropped from the article page and re-encoded.</sub>
 
 The primary shell validation is a Nakajima hemispherical-dome benchmark compared against
 Abaqus/Explicit 2024 HF3 using S4 shells, in double precision.
@@ -190,10 +203,15 @@ more sensitive than stress — about 0.7 % on the mean and 1.2 % on the maximum.
 
 ### Contact validation against a closed-form solution
 
+<img src="../assets/benchmarks/jmmp-flat-punch-figure-a1.png" width="100%">
+
+<sub>**Published validation setup** — JMMP 2026, Figure A1. Reproduced under CC BY 4.0; cropped
+from the article page and re-encoded.</sub>
+
 <table>
 <tr>
 <td width="46%"><img src="../assets/benchmarks/flat-punch-contact-model.png" width="100%"><br>
-<sub>Benchmark geometry schematic — not solver output</sub></td>
+<sub>Simplified geometry schematic — MinuteSim-authored, not solver output</sub></td>
 <td width="54%" valign="top">
 
 **Rounded flat-punch normal contact**
@@ -235,7 +253,8 @@ contact force differ by 6.3 × 10⁻¹¹.
 
 <table>
 <tr>
-<td width="46%"><img src="../assets/solid-result.png" width="100%"></td>
+<td width="46%"><img src="../assets/solid-result.png" width="100%"><br>
+<sub>Published benchmark model — JMMP 2026, Figure 2 (CC BY 4.0)</sub></td>
 <td width="54%" valign="top">
 
 **Hemisphere compression**
