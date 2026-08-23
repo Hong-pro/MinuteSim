@@ -332,5 +332,7 @@ documentation and published evidence. For beta access or technical evaluation, p
 [Publications](docs/publications.md) ·
 [Roadmap](docs/roadmap.md)
 
-<sub>[Limitations](docs/limitations.md) ·
+<sub>[I/O Roadmap](docs/io-roadmap.md) ·
+[Third-Party Software](docs/third-party-software.md) ·
+[Limitations](docs/limitations.md) ·
 [Documentation Governance](docs/DOCUMENTATION_GOVERNANCE.md)</sub>

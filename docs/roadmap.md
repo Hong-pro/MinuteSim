@@ -204,6 +204,12 @@ package**.
 No approved target month exists for any planned item, so each is listed as TBD rather than given an
 estimated date. These are development directions, not commitments.
 
+## Related pages
+
+Format-level direction for model import, result export and checkpointing is in the
+[I/O Roadmap](io-roadmap.md). Components MinuteSim distributes or expects you to install are listed
+in [Third-Party Software](third-party-software.md).
+
 ## Completed milestones
 
 | Completed | Milestone | Evidence |
