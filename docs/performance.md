@@ -219,3 +219,65 @@ evidence.
 The benchmark input decks and processed result data for the shell work are published in the
 supplementary archive accompanying the Applied Sciences paper. The solid benchmark configuration is
 documented in the JMMP paper. See [Benchmarks](benchmarks.md) for the full matrix.
+
+---
+
+## S-rail Full-Stroke Forming
+
+**Up to 23× faster than OpenRadioss on the ~7,000-element full-stroke S-rail benchmark, with
+performance advantages exceeding 200× on much larger shell models.**
+
+The full-stroke S-rail case starts from a 675-element deformable blank and uses adaptive
+refinement, reaching approximately 7,000 active elements in both solvers.
+
+| Metric | OpenRadioss L2 | MinuteSim |
+|---|---:|---:|
+| Initial elements | 675 | 675 |
+| Final active elements | 6,729 | 6,963 |
+| Mesh growth | 9.97× | 10.32× |
+| Best full-stroke runtime | 678 s @ 8 CPU threads | 66.5 s |
+| Best-reference speedup | 1× | 10.2× |
+
+Each solver refines under its own scheme, which is why the final active-element counts differ.
+
+### OpenRadioss CPU Scaling
+
+| CPU threads | OpenRadioss L2 runtime [s] | MinuteSim [s] | MinuteSim speedup |
+|---:|---:|---:|---:|
+| 2 | 1,528 | 66.5 | 23.0× |
+| 3 | 932 | 66.5 | 14.0× |
+| 4 | 874 | 66.5 | 13.1× |
+| 5 | 734 | 66.5 | 11.0× |
+| 6 | 722 | 66.5 | 10.9× |
+| 7 | 754 | 66.5 | 11.3× |
+| **8** | **678** | **66.5** | **10.2×** |
+| 9 | 724 | 66.5 | 10.9× |
+| 10 | 710 | 66.5 | 10.7× |
+
+- **23.0×** is the largest measured speedup in this CPU-thread sweep, corresponding to the
+  2-thread OpenRadioss run.
+- OpenRadioss achieves its best measured L2 runtime at **8 CPU threads: 678 s**.
+- Against that best CPU configuration, MinuteSim is still **10.2× faster** in wall-clock time.
+
+### Interpretation
+
+The S-rail case is a relatively small adaptive shell model, reaching only about 7,000 active
+elements. In the substantially larger shell benchmark presented above — the ~505,000-element
+Nakajima deck — the measured performance advantage exceeds 200×, at **224.8× per step against the
+published LS-DYNA MPP R14.1 1-core timing** (90.8× at 8 cores, 69.3× at 32 cores). Together, these
+results show that the benefit of GPU-resident execution becomes much more pronounced as shell
+problem size increases.
+
+### Scope of this comparison
+
+The S-rail and large-shell results use their respective benchmark reference configurations. They
+are **not** a single controlled scaling curve against one identical reference solver:
+
+- the S-rail figures are wall-clock runtimes against **OpenRadioss L2 on CPU**, measured across a
+  thread sweep
+- the >200× figure is a per-step comparison against **published LS-DYNA MPP R14.1 reference
+  timing**, and carries the caveats in [Scope of these numbers](#scope-of-these-numbers) above
+
+Both are runtime comparisons only. Neither is an accuracy result — no reference solution is
+compared against the S-rail case, which remains a capability demonstration. Measured shell
+accuracy is reported in [Validation](validation.md).
