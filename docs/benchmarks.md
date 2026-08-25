@@ -45,13 +45,15 @@ Publications: **[AS]** = [Applied Sciences 16(12), 5826](https://doi.org/10.3390
 
 <tr>
 <td align="center"><img src="../assets/srail-shell-eqp.png" width="100%"><br><sub>S-rail</sub></td>
-<td>Full-stroke forming demonstration</td><td>MITC4</td><td>675 → 6,963 (adaptive)</td>
+<td>Full-stroke forming demonstration</td><td>MITC4</td><td>675 → ~40,400 (adaptive, L3)</td>
 <td><a href="../README.md">Demonstration →</a></td>
 </tr>
 </table>
 
 The S-rail case is a **capability demonstration**. No reference solution is compared against it, so
-it produces no accuracy or speedup claim.
+it produces no accuracy claim. It does carry a cross-solver *runtime* comparison against
+OpenRadioss — see [Performance](performance.md#s-rail-full-stroke-forming) — which measures speed,
+not correctness.
 
 Thumbnails marked with a figure number are the published figures, reproduced under CC BY 4.0 —
 see [figure provenance](../assets/README.md). The Nakajima thumbnail is a render of the actual
@@ -118,19 +120,45 @@ Each case with its evidence class. Measured numbers are **not** repeated here �
 
 The intermediate-mesh cross-code result is published at the 80 mm production stroke only.
 
-### S-rail full-stroke forming — demonstration case
+### S-rail full-stroke forming
 
-An S-rail draw-forming case ships with the 0.9.0-beta.1 release package
-(`benchmarks/srail/`). It runs the full stroke on an adaptively refined blank that grows from 675
-to 6,963 elements, concentrating refinement in the S-bend and sidewalls while the flange stays
-coarse.
+An S-rail draw-forming case ships with the release package under `benchmarks/srail/`. It runs the
+complete 9.9 ms stroke on an adaptively refined blank, concentrating refinement in the S-bend and
+sidewalls while the flange stays coarse.
 
-It is **not** in the matrix above and carries no evidence class, because no reference solution,
-error metric, or cross-code comparison is published for it. Its role is to show what a MinuteSim
-shell run produces, which is why it supplies the shell image on the
-[README](../README.md) — a full 3D formed part reads more directly there than a profile plot does.
+**Two refinement levels ship**, driven by `*CONTROL_ADAPTIVE MAXLVL` on the same deck and the same
+stroke. They exist so the effect of problem size can be measured rather than argued:
+
+| Deck | `MAXLVL` | Blank at start | Model at full stroke | Explicit steps |
+|---|---:|---:|---:|---:|
+| `srail_l2.k` | 3 | 675 shell elements | ~11,300 | 40,494 |
+| `srail_l3.k` | 4 | 675 shell elements | ~40,400 | 79,926 |
+
+The finer deck is not simply "more elements": the smaller elements drive a smaller stable time
+step, so L3 runs roughly twice the steps of L2 as well as four times the elements.
+
+**Model.** A deformable blank (`*MAT_024`, piecewise-linear plasticity with a 251-point hardening
+curve) drawn between three rigid tools. Coulomb friction, penalty contact, and adaptive shell
+refinement with a 2-to-1 rule and explicit state transfer at every refinement epoch.
+
+**What it is for.** This case carries **no evidence class**, because no reference solution or error
+metric is published for it. It has two jobs:
+
+1. **Capability demonstration** — it supplies the shell imagery on the [README](../README.md),
+   where a fully formed 3D part reads more directly than a profile plot.
+2. **Runtime comparison** — the cross-solver timing against OpenRadioss in
+   [Performance](performance.md#s-rail-full-stroke-forming), which is a wall-clock comparison and
+   **not** an accuracy comparison.
+
 Nakajima remains the shell **validation** benchmark and the basis of every accuracy figure in
-[Validation](validation.md); the two are doing different jobs.
+[Validation](validation.md). The two cases are doing different jobs, and neither substitutes for
+the other.
+
+**Reproducing it.** The package ships `run_srail_l2_cuda.bat` and `run_srail_l3_cuda.bat`. Both
+set `FASTGPU_ADPENE=1` and call the solver with `--compute-backend cuda`. Results are written as
+HDF5 with an XDMF index. The published imagery is rendered from that output by
+`assets/shell/srail/render_srail_fullstroke.py`, and the performance figure by
+`render_srail_performance.py` beside it — neither is hand-edited afterwards.
 
 ### Solid benchmarks
 

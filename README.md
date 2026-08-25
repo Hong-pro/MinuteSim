@@ -27,19 +27,20 @@ and contact-intensive structural analysis on NVIDIA GPUs.**
 
 <img src="assets/srail-shell-thickness-animation.gif" alt="S-rail full-stroke shell forming: shell thickness developing through the draw on an adaptively refining mesh" width="88%">
 
-**Full-stroke S-rail forming — 66.5 s (1.1 min)**<br>
+**Full-stroke S-rail forming — 705 s on one NVIDIA L40**<br>
 GPU explicit shell simulation with adaptive local refinement
 
-32,222 explicit steps
+79,926 explicit steps
 
-**Deformable blank:** 675 → 6,963 shell elements<br>
-**Total model:** 1,940 → 8,228 shell elements
+**Deformable blank:** 675 → ~40,400 shell elements<br>
+**4.1× faster** than the best OpenRadioss CPU configuration on the same deck
 
 </div>
 
 This is a MinuteSim shell simulation result for this specific benchmark configuration, and a
-capability demonstration rather than an accuracy claim. Independent accuracy evidence is
-reported separately in [Validation](docs/validation.md).
+capability demonstration rather than an accuracy claim. The runtime comparison is in
+[Performance](docs/performance.md); independent accuracy evidence is reported separately in
+[Validation](docs/validation.md).
 
 ---
 

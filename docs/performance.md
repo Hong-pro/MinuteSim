@@ -224,60 +224,76 @@ documented in the JMMP paper. See [Benchmarks](benchmarks.md) for the full matri
 
 ## S-rail Full-Stroke Forming
 
-**Up to 23× faster than OpenRadioss on the ~7,000-element full-stroke S-rail benchmark, with
-performance advantages exceeding 200× on much larger shell models.**
+**Up to 10.3× faster than OpenRadioss on the full-stroke S-rail benchmark, measured across both
+refinement levels and the full CPU thread sweep.**
 
-The full-stroke S-rail case starts from a 675-element deformable blank and uses adaptive
-refinement, reaching approximately 7,000 active elements in both solvers.
+![S-rail cross-solver performance](../assets/srail-performance.png)
 
-| Metric | OpenRadioss L2 | MinuteSim |
+The same deck and the same 9.9 ms stroke throughout. Two adaptive refinement levels ship with the
+benchmark, so the comparison is measured at two problem sizes rather than one — see
+[Benchmark Cases](benchmarks.md#s-rail-full-stroke-forming) for the model.
+
+| | L2 deck (`MAXLVL 3`) | L3 deck (`MAXLVL 4`) |
 |---|---:|---:|
-| Initial elements | 675 | 675 |
-| Final active elements | 6,729 | 6,963 |
-| Mesh growth | 9.97× | 10.32× |
-| Best full-stroke runtime | 678 s @ 8 CPU threads | 66.5 s |
-| Best-reference speedup | 1× | 10.2× |
+| Blank at start | 675 elements | 675 elements |
+| Model at full stroke | ~11,300 | ~40,400 |
+| Explicit steps | 40,494 | 79,926 |
+| **MinuteSim** — NVIDIA L40, FP32 | **157 s** | **705 s** |
+| OpenRadioss best — 8 CPU threads | 678 s | 2,869 s |
+| Speedup vs best CPU configuration | **4.3×** | **4.1×** |
+| Speedup vs 2-thread CPU | **9.7×** | **10.3×** |
 
-Each solver refines under its own scheme, which is why the final active-element counts differ.
+### OpenRadioss CPU scaling
 
-### OpenRadioss CPU Scaling
+| CPU threads | L2 deck [s] | MinuteSim speedup | L3 deck [s] | MinuteSim speedup |
+|---:|---:|---:|---:|---:|
+| 2 | 1,528 | 9.7× | 7,276 | 10.3× |
+| 3 | 932 | 5.9× | 5,376 | 7.6× |
+| 4 | 874 | 5.6× | 4,469 | 6.3× |
+| 5 | 734 | 4.7× | 3,431 | 4.9× |
+| 6 | 722 | 4.6× | 3,159 | 4.5× |
+| 7 | 754 | 4.8× | 3,007 | 4.3× |
+| **8** | **678** | **4.3×** | **2,869** | **4.1×** |
+| 9 | 724 | 4.6× | 4,794 | 6.8× |
+| 10 | 710 | 4.5× | 2,980 | 4.2× |
 
-| CPU threads | OpenRadioss L2 runtime [s] | MinuteSim [s] | MinuteSim speedup |
-|---:|---:|---:|---:|
-| 2 | 1,528 | 66.5 | 23.0× |
-| 3 | 932 | 66.5 | 14.0× |
-| 4 | 874 | 66.5 | 13.1× |
-| 5 | 734 | 66.5 | 11.0× |
-| 6 | 722 | 66.5 | 10.9× |
-| 7 | 754 | 66.5 | 11.3× |
-| **8** | **678** | **66.5** | **10.2×** |
-| 9 | 724 | 66.5 | 10.9× |
-| 10 | 710 | 66.5 | 10.7× |
+OpenRadioss reaches its best runtime at **8 threads on both decks** and does not improve beyond
+that; from 2 to 8 threads it gains 2.3× on L2 and 2.5× on L3, well short of the 4× the thread
+count would suggest. The headline comparison uses that best CPU result.
 
-- **23.0×** is the largest measured speedup in this CPU-thread sweep, corresponding to the
-  2-thread OpenRadioss run.
-- OpenRadioss achieves its best measured L2 runtime at **8 CPU threads: 678 s**.
-- Against that best CPU configuration, MinuteSim is still **10.2× faster** in wall-clock time.
+The 9-thread points sit off the trend on both decks. They are reported as measured rather than
+dropped or re-run.
 
 ### Interpretation
 
-The S-rail case is a relatively small adaptive shell model, reaching only about 7,000 active
-elements. In the substantially larger shell benchmark presented above — the ~505,000-element
-Nakajima deck — the measured performance advantage exceeds 200×, at **224.8× per step against the
-published LS-DYNA MPP R14.1 1-core timing** (90.8× at 8 cores, 69.3× at 32 cores). Together, these
-results show that the benefit of GPU-resident execution becomes much more pronounced as shell
-problem size increases.
+Quadrupling the element count moves the comparison very little: **4.3× at L2 and 4.1× at L3**
+against the best CPU configuration. Both solvers grow with the problem, so the ratio between them
+is close to flat across this size range.
+
+That flatness is the useful result. It says the S-rail margin is a property of the workload rather
+than an artefact of one mesh, and it sets expectations honestly: a forming run of this kind is
+several times faster on the GPU, not an order of magnitude.
+
+The much larger margins on this page — the ~505,000-element Nakajima throughput deck — are a
+different measurement, and the difference in basis matters more than the difference in size.
 
 ### Scope of this comparison
 
-The S-rail and large-shell results use their respective benchmark reference configurations. They
-are **not** a single controlled scaling curve against one identical reference solver:
+The S-rail and Nakajima results are **not** a single scaling curve. Three things differ:
 
-- the S-rail figures are wall-clock runtimes against **OpenRadioss L2 on CPU**, measured across a
-  thread sweep
-- the >200× figure is a per-step comparison against **published LS-DYNA MPP R14.1 reference
-  timing**, and carries the caveats in [Scope of these numbers](#scope-of-these-numbers) above
+| | S-rail | Nakajima throughput |
+|---|---|---|
+| Reference solver | OpenRadioss, CPU thread sweep | LS-DYNA MPP R14.1, published timing |
+| Metric | Wall clock, full stroke | Per step, fixed step window |
+| Basis | Both measured here | MinuteSim measured, reference published |
 
-Both are runtime comparisons only. Neither is an accuracy result — no reference solution is
-compared against the S-rail case, which remains a capability demonstration. Measured shell
-accuracy is reported in [Validation](validation.md).
+Quoting the S-rail speedup beside the Nakajima per-step figure as if they were points on one curve
+would overstate both. They are separate benchmarks with separate reference configurations.
+
+Every number here is a runtime comparison only. **Neither is an accuracy result** — no reference
+solution is compared against the S-rail case. Measured shell accuracy is reported in
+[Validation](validation.md).
+
+`UNRESOLVED` — the OpenRadioss version, host CPU, and precision for this sweep are not yet recorded
+on this page. Both solvers ran the same deck and stroke, but until that configuration is stated the
+comparison is not fully reproducible by a third party.

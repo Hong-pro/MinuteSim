@@ -13,10 +13,10 @@ should be cited as accuracy evidence. Measured accuracy lives in
 
 | Item | Value |
 |---|---|
-| Result file | `benchmarks/srail/srail_fullstroke.xdmf` in the MinuteSim 0.9.0-beta.1 release package |
+| Result file | `benchmarks/srail/srail_l3.xdmf` in the MinuteSim 0.9.0-beta.2 release package (L2 deck also ships) |
 | Format | XDMF index over HDF5, read as an unstructured grid |
 | States | 20, from `t = 0` to `t = 9.63224e-3` |
-| Cells | 1,940 at `t = 0` → 8,228 at the final state (blank: 675 → 6,963) |
+| Cells | blank 675 at `t = 0` → ~40,400 at the final state (L3 deck, `MAXLVL 4`) |
 | Access | Read-only. The benchmark result was not modified, moved, or re-run. |
 
 The result file is **not** part of this repository. The render script takes its location as
@@ -56,10 +56,10 @@ Re-running the script rewrites the published files in place, under the same name
 | `srail-shell-thickness.png` | 2560 × 1440 | 1.22 MB | Whole part, isometric, thickness at full stroke |
 | `srail-shell-eqp-detail.png` | 2560 × 1440 | 2.39 MB | S-bend flank, plastic strain |
 | `srail-shell-thickness-detail.png` | 2560 × 1440 | 2.27 MB | S-bend flank, thickness |
-| `srail-shell-thickness-animation.gif` | 880 × 496 | 1.43 MB | 32 frames, looping — linked from the README |
-| `srail-shell-eqp-animation.gif` | 880 × 496 | 1.47 MB | 32 frames, looping |
-| `srail-shell-thickness-animation.mp4` | 1280 × 720 | 0.53 MB | H.264, 10 fps, 3.2 s |
-| `srail-shell-eqp-animation.mp4` | 1280 × 720 | 0.71 MB | H.264, 10 fps, 3.2 s |
+| `srail-shell-thickness-animation.gif` | 760 wide | 3.22 MB | 59 frames, looping — linked from the README |
+| `srail-shell-eqp-animation.gif` | 760 wide | 2.69 MB | 59 frames, looping |
+| `srail-shell-thickness-animation.mp4` | 1280 wide | 4.44 MB | H.264, 24 fps, 9.8 s |
+| `srail-shell-eqp-animation.mp4` | 1280 wide | 3.35 MB | H.264, 24 fps, 9.8 s |
 | `render_srail_fullstroke.py` | — | 12 KB | The script that produces all of the above |
 
 `_frames_thickness/` and `_frames_eqp/` sit beside the script and hold the 20 rendered PNG frames
@@ -79,7 +79,7 @@ with the contour. Background is pure white; no orientation axes, no ParaView int
 
 **Element mesh.** Drawn on the blank in every asset, at one pixel. Showing it is the point
 rather than a decoration: the blank starts as a uniform coarse grid of 675 cells and ends at
-6,963, with the added elements concentrated in the S-bend and the sidewalls while the flange
+~40,400, with the added elements concentrated in the S-bend and the sidewalls while the flange
 stays coarse. That contrast is legible in the stills and develops over the animations.
 
 Edge colour is **per field**, because the two fields put their dark end in different places:
@@ -115,7 +115,7 @@ read `1 1.0e+00`.
 - **Dense-mesh regions at hero zoom.** Where refinement is finest, cell edges approach the line
   width and the mesh reads as texture rather than as individually countable elements. The
   closeups exist for that; do not use a hero still to count elements.
-- **20 states.** The clips play the 20 states written by the benchmark, at 10 fps with the final
+- **236 states.** The clips play the 236 states written by the benchmark run, at 24 fps with the final
   state held. Motion is therefore stepped, not continuous; there is no interpolated geometry.
 - **No time or stroke annotation.** The frames carry no timestamp or stroke overlay.
 - **Final state only, for the stills.** All four PNGs are the last written state.

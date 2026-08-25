@@ -49,9 +49,13 @@ FIELDS = {
         title="Shell thickness  (mm)",
         preset="Turbo",
         invert=True,          # red/warm = thinned, blue = near nominal
-        rng=(0.84, 1.01),
+        # Measured final-state range of the L3 benchmark is 0.903-1.147 mm. The earlier
+        # 0.84-1.01 window predated the thickening seen at this refinement level and
+        # collapsed everything at or above nominal into one dark band, which hid the
+        # forming pattern over most of the part.
+        rng=(0.90, 1.15),
         nominal=1.0,
-        labels=[0.84, 0.88, 0.92, 0.96, 1.00],
+        labels=[0.90, 0.95, 1.00, 1.05, 1.10, 1.15],
         fmt="{:.2f}",
         edge=[0.12, 0.12, 0.15],
     ),
