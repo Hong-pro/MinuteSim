@@ -16,7 +16,7 @@ MS_L2, MS_L3 = 157.0, 705.0
 C_L2, C_L3, C_MS2, C_MS3 = "#2b6cb0", "#b7791f", "#2b6cb0", "#b7791f"
 GRID = dict(color="#d8dee6", lw=0.7, zorder=0)
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.8, 5.6))
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.8, 5.9))
 fig.patch.set_facecolor("white")
 
 # --- left: wall time -----------------------------------------------------------
@@ -65,17 +65,19 @@ ax2.grid(axis="y", **GRID)
 ax2.set_axisbelow(True)
 ax2.legend(fontsize=8.5, frameon=False)
 
-fig.suptitle("S-rail full-stroke forming — MinuteSim (NVIDIA L40) vs OpenRadioss L2 (CPU)",
+fig.suptitle("S-rail full-stroke forming — MinuteSim (GPU) vs OpenRadioss (CPU)",
              fontsize=12.5, fontweight="bold", x=0.008, ha="left", y=0.985)
 fig.text(0.008, 0.010,
          "Same deck and same stroke throughout.   MinuteSim 0.9.0-beta.2, NVIDIA L40, FP32.   "
          "OpenRadioss commit bd4557b (2026-08-21), Linux/GNU, FP64, Intel Core i5-13400F (10C/16T).\n"
-         "Precision is not matched, and the two solvers ran on different machines. Both asymmetries "
-         "favour MinuteSim and neither is corrected for.\n"
+         "Both solvers use a fully integrated 4-node shell.   Precision is not matched and the two "
+         "solvers ran on different machines; both asymmetries favour MinuteSim and neither is corrected for.\n"
+         "At ~11k and ~40k elements these decks are too small to load a GPU of this class — this is not "
+         "the ceiling of GPU-resident execution.\n"
          "“L2 deck” / “L3 deck” = adaptive refinement level (MAXLVL 3 / 4).   "
          "Runtime comparison only — not an accuracy comparison.   9-thread points reported as measured.",
          fontsize=8, color="#5f6f7e", ha="left", linespacing=1.5)
-fig.tight_layout(rect=(0, 0.135, 1, 0.955))
+fig.tight_layout(rect=(0, 0.165, 1, 0.955))
 out = __import__("sys").argv[1]
 fig.savefig(out, dpi=170, facecolor="white")
 print("wrote", out)

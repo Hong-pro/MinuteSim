@@ -241,7 +241,7 @@ benchmark, so the comparison is measured at two problem sizes rather than one �
 | Build | Windows, CUDA | Linux 64-bit, GNU compiler |
 | Hardware | NVIDIA L40 | Intel Core i5-13400F — 10 cores / 16 threads |
 | **Precision** | **FP32** | **FP64 (double-precision build)** |
-| Shell formulation | MITC4 (ELFORM 16) | L2 |
+| Shell formulation | MITC4 (ELFORM 16) | Fully integrated 4-node shell, `Ishell = 12` |
 | Timing | Full-stroke wall clock, output enabled | Full-stroke wall clock |
 
 **Two asymmetries matter and are not corrected for.**
@@ -254,9 +254,7 @@ measured, so the size of the effect is unknown rather than estimated.
 the MinuteSim timings are L40 measurements taken on different hardware. The two solvers were not
 run side by side, unlike the published Nakajima comparison earlier on this page.
 
-The i5-13400F is a hybrid design — 6 performance cores and 4 efficiency cores. Thread counts above
-six therefore recruit cores of a different class, which is worth knowing when reading the scaling
-curve, though no attempt is made here to attribute the shape of that curve.
+Both solvers use a **fully integrated** 4-node shell, so the element formulation is matched in kind.
 
 | | L2 deck (`MAXLVL 3`) | L3 deck (`MAXLVL 4`) |
 |---|---:|---:|
@@ -291,16 +289,20 @@ dropped or re-run.
 
 ### Interpretation
 
-Quadrupling the element count moves the comparison very little: **4.3× at L2 and 4.1× at L3**
-against the best CPU configuration. Both solvers grow with the problem, so the ratio between them
-is close to flat across this size range.
+**This benchmark is too small to show what GPU-resident execution is for.** At ~11,000 and
+~40,400 elements, the S-rail decks sit far below the size where a GPU is worth reaching for. A
+device of this class is nowhere near saturated by tens of thousands of shell elements, so most of
+its throughput goes unused and a large part of each step is fixed overhead rather than element
+work. Four to ten times is what that regime produces — it is not the ceiling, and it should not be
+read as one.
 
-That flatness is the useful result. It says the S-rail margin is a property of the workload rather
-than an artefact of one mesh, and it sets expectations honestly: a forming run of this kind is
-several times faster on the GPU, not an order of magnitude.
+The flatness across the two levels says the same thing from another angle: quadrupling the element
+count barely moves the ratio, because neither solver is yet limited by the thing that separates
+them. The GPU advantage widens with problem size, and this case is not large enough to show it.
 
-The much larger margins on this page — the ~505,000-element Nakajima throughput deck — are a
-different measurement, and the difference in basis matters more than the difference in size.
+The ~505,000-element Nakajima throughput deck on this page is where that regime begins. It is a
+different measurement with a different reference and metric, so the two are not points on one
+curve — but the size difference is the reason the margins differ so much.
 
 ### Scope of this comparison
 
