@@ -233,6 +233,31 @@ The same deck and the same 9.9 ms stroke throughout. Two adaptive refinement lev
 benchmark, so the comparison is measured at two problem sizes rather than one — see
 [Benchmark Cases](benchmarks.md#s-rail-full-stroke-forming) for the model.
 
+### Configuration
+
+| Item | MinuteSim | OpenRadioss |
+|---|---|---|
+| Version | 0.9.0-beta.2 | Built from source at commit `bd4557b`, 2026-08-21 |
+| Build | Windows, CUDA | Linux 64-bit, GNU compiler |
+| Hardware | NVIDIA L40 | Intel Core i5-13400F — 10 cores / 16 threads |
+| **Precision** | **FP32** | **FP64 (double-precision build)** |
+| Shell formulation | MITC4 (ELFORM 16) | L2 |
+| Timing | Full-stroke wall clock, output enabled | Full-stroke wall clock |
+
+**Two asymmetries matter and are not corrected for.**
+
+**Precision is not matched.** MinuteSim runs single precision; the OpenRadioss build is
+double precision. That difference favours MinuteSim, and no single-precision OpenRadioss build was
+measured, so the size of the effect is unknown rather than estimated.
+
+**This is not a same-workstation comparison.** The OpenRadioss sweep ran on the i5-13400F above;
+the MinuteSim timings are L40 measurements taken on different hardware. The two solvers were not
+run side by side, unlike the published Nakajima comparison earlier on this page.
+
+The i5-13400F is a hybrid design — 6 performance cores and 4 efficiency cores. Thread counts above
+six therefore recruit cores of a different class, which is worth knowing when reading the scaling
+curve, though no attempt is made here to attribute the shape of that curve.
+
 | | L2 deck (`MAXLVL 3`) | L3 deck (`MAXLVL 4`) |
 |---|---:|---:|
 | Blank at start | 675 elements | 675 elements |
@@ -294,6 +319,6 @@ Every number here is a runtime comparison only. **Neither is an accuracy result*
 solution is compared against the S-rail case. Measured shell accuracy is reported in
 [Validation](validation.md).
 
-`UNRESOLVED` — the OpenRadioss version, host CPU, and precision for this sweep are not yet recorded
-on this page. Both solvers ran the same deck and stroke, but until that configuration is stated the
-comparison is not fully reproducible by a third party.
+Read the S-rail figures with the two asymmetries in the configuration table attached: MinuteSim is
+single precision against a double-precision OpenRadioss build, and the two solvers ran on different
+machines. A precision-matched, same-workstation S-rail comparison has not been measured.
