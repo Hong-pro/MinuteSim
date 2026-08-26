@@ -39,7 +39,7 @@ No separate CUDA redistributable file is shipped.
 
 | Component | Relationship | License | Status |
 |---|---|---|---|
-| [MMG](https://www.mmgtools.org/) | Used by the optional remeshing capability as a dynamically linked shared library. No MMG source is compiled into any MinuteSim component | LGPL-3.0-or-later | **Not part of the 0.9.0-beta.1 release package.** If the remeshing capability is distributed, MMG's license text, its notice, and an offer for the corresponding source accompany it, and the shipped MMG library can be replaced by a user-built one |
+| [MMG](https://www.mmgtools.org/) | Used by the optional solid adaptive-meshing capability as a dynamically linked shared library. No MMG source is compiled into any MinuteSim component | LGPL-3.0-or-later | **Not part of the 0.9.0-beta.1 release package.** If that capability is distributed, MMG's license text, its notice, and an offer for the corresponding source accompany it, and the shipped MMG library can be replaced by a user-built one |
 | [Gmsh](https://gmsh.info/) | An optional workflow can drive a Gmsh installation you provide, as a separate program exchanging ordinary mesh files. No Gmsh code is linked into or compiled into MinuteSim | GPL-2.0-or-later | **Not distributed with MinuteSim.** You install it yourself if you want that workflow |
 
 ## What is not listed here

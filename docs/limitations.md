@@ -125,7 +125,7 @@ rather than assuming a card behaves as it does elsewhere.
 | Adaptive shell refinement | `EXPERIMENTAL` | Exercised in the shipped demonstration deck. |
 | Adaptive coarsening | `NOT SUPPORTED` | The demonstration deck carries coarsening settings, and the solver reports at run time that those fields are parsed but not applied. |
 | Mass scaling across adaptive topology changes | `EXPERIMENTAL` | Still under numerical closure. Treat results combining aggressive mass scaling with topology change as provisional. |
-| Solid remeshing and state transfer | `NOT SUPPORTED` in the beta distribution | The code path and its command-line switch are in the shipped executable, but an external dependency it requires is not included in the beta distribution, so the path cannot run as shipped. No validation evidence is published. |
+| Solid adaptive meshing and state transfer | `NOT SUPPORTED` in the beta distribution | The code path and its command-line switch are in the shipped executable, but an external dependency it requires is not included in the beta distribution, so the path cannot run as shipped. No validation evidence is published. |
 | Implicit analysis | `EXPERIMENTAL` | Implicit static modes are selectable from the command line and are outside all published validation. |
 | Material and contact coverage | — | The validated forming deck uses one shell formulation, one hardening model, and one contact formulation. Other options exist in the solver without published validation evidence. |
 
