@@ -134,10 +134,9 @@ stroke. They exist so the effect of problem size can be measured rather than arg
 | `srail_l2.k` | 3 | 675 | 10,044 | 40,494 |
 | `srail_l3.k` | 4 | 675 | 39,102 | 79,926 |
 
-Element counts are the **deformable blank**, which is what refines. The three rigid tools add a
-further 1,265 shells that never change, so the total model is 11,309 and 40,367 elements. Earlier
-revisions of this page quoted those totals against the blank's starting count, which mixed the two
-bases.
+Element counts throughout this page are the **deformable blank**, which is the only part that
+refines. The rigid tools are meshed too, but their 1,265 shells never change and are excluded — a
+count that mixes them in overstates the deformable model.
 
 The finer deck is not simply "more elements": the smaller elements drive a smaller stable time
 step, so L3 runs roughly twice the steps of L2 as well as four times the elements.

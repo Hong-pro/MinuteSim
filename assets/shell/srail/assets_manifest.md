@@ -16,8 +16,7 @@ should be cited as accuracy evidence. Measured accuracy lives in
 | Result file | `benchmarks/srail/srail_l3.xdmf` in the MinuteSim 0.9.0-beta.2 release package (L2 deck also ships) |
 | Format | XDMF index over HDF5, read as an unstructured grid |
 | States | 236, from `t = 0` to `t = 9.8974e-3` |
-| Cells | blank 675 at `t = 0` → 39,102 at the final state (L3 deck, `MAXLVL 4`).
-  The three rigid tools add 1,265 shells that never change, so the total model is 40,367. |
+| Cells | blank 675 at `t = 0` → 39,102 at the final state (L3 deck, `MAXLVL 4`). The rigid tools' 1,265 shells are excluded — they never refine. |
 | Access | Read-only. The benchmark result was not modified, moved, or re-run. |
 
 The result file is **not** part of this repository. The render script takes its location as
