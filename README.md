@@ -25,14 +25,14 @@ and contact-intensive structural analysis on NVIDIA GPUs.**
 
 <div align="center">
 
-<img src="assets/srail-shell-thickness-animation.gif" alt="S-rail full-stroke shell forming: shell thickness developing through the draw on an adaptively refining mesh" width="88%">
+<img src="assets/srail-shell-thickness-animation.gif" alt="S-rail full-stroke shell forming: shell thickness developing through the draw, thinning on the S-bend flanks and thickening where material draws in" width="88%">
 
 **Full-stroke S-rail forming — 705 s**<br>
 GPU explicit shell simulation with adaptive local refinement
 
 79,926 explicit steps
 
-**Deformable blank:** 675 → ~40,400 shell elements
+**Deformable blank:** 675 → 39,102 shell elements
 
 </div>
 
@@ -213,7 +213,7 @@ released are tracked as three separate things.
 <table>
 <tr>
 <td align="center" width="50%">
-<img src="assets/srail-shell-eqp.png" alt="S-rail shell forming result: equivalent plastic strain on the fully formed part, with the adaptively refined element mesh visible" width="100%">
+<img src="assets/srail-shell-eqp.png" alt="S-rail shell forming result: equivalent plastic strain on the fully formed part, concentrated along the S-bend and sidewalls" width="100%">
 <br>
 <b>S-rail Shell Forming</b><br>
 <sub>Equivalent plastic strain at full stroke</sub>
@@ -230,6 +230,13 @@ released are tracked as three separate things.
 [Thickness result](assets/srail-shell-thickness.png) ·
 [GIF animation](assets/srail-shell-thickness-animation.gif) ·
 [MP4 animation](assets/srail-shell-thickness-animation.mp4)
+
+The adaptively refined mesh is shown in the detail views —
+[thickness](assets/srail-shell-thickness-detail.png) ·
+[plastic strain](assets/srail-shell-eqp-detail.png) — where an element is large enough to carry
+both the mesh and the contour. The wide views and the animations are drawn without element edges,
+which at ~39,000 elements would cover the field they exist to show. Contour ranges are display
+windows; the measured extremes are in [Benchmark Cases](docs/benchmarks.md#s-rail-full-stroke-forming).
 
 The S-rail case is a **capability demonstration, not a validation result** — no reference
 solution is compared against it. Measured shell accuracy comes from the Nakajima benchmark,

@@ -259,7 +259,7 @@ Both solvers use a **fully integrated** 4-node shell, so the element formulation
 | | L2 deck (`MAXLVL 3`) | L3 deck (`MAXLVL 4`) |
 |---|---:|---:|
 | Blank at start | 675 elements | 675 elements |
-| Model at full stroke | ~11,300 | ~40,400 |
+| Blank at full stroke | 10,044 | 39,102 |
 | Explicit steps | 40,494 | 79,926 |
 | **MinuteSim** — NVIDIA L40, FP32 | **157 s** | **705 s** |
 | OpenRadioss best — 8 CPU threads | 678 s | 2,869 s |
@@ -290,7 +290,7 @@ dropped or re-run.
 ### Interpretation
 
 **This benchmark is too small to show what GPU-resident execution is for.** At ~11,000 and
-~40,400 elements, the S-rail decks sit far below the size where a GPU is worth reaching for. A
+~39,000 elements, the S-rail decks sit far below the size where a GPU is worth reaching for. A
 device of this class is nowhere near saturated by tens of thousands of shell elements, so most of
 its throughput goes unused and a large part of each step is fixed overhead rather than element
 work. Four to ten times is what that regime produces — it is not the ceiling, and it should not be

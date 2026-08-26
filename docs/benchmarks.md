@@ -45,7 +45,7 @@ Publications: **[AS]** = [Applied Sciences 16(12), 5826](https://doi.org/10.3390
 
 <tr>
 <td align="center"><img src="../assets/srail-shell-eqp.png" width="100%"><br><sub>S-rail</sub></td>
-<td>Full-stroke forming demonstration</td><td>MITC4</td><td>675 → ~40,400 (adaptive, L3)</td>
+<td>Full-stroke forming demonstration</td><td>MITC4</td><td>675 → 39,102 (adaptive, L3)</td>
 <td><a href="../README.md">Demonstration →</a></td>
 </tr>
 </table>
@@ -129,10 +129,15 @@ sidewalls while the flange stays coarse.
 **Two refinement levels ship**, driven by `*CONTROL_ADAPTIVE MAXLVL` on the same deck and the same
 stroke. They exist so the effect of problem size can be measured rather than argued:
 
-| Deck | `MAXLVL` | Blank at start | Model at full stroke | Explicit steps |
+| Deck | `MAXLVL` | Blank at start | Blank at full stroke | Explicit steps |
 |---|---:|---:|---:|---:|
-| `srail_l2.k` | 3 | 675 shell elements | ~11,300 | 40,494 |
-| `srail_l3.k` | 4 | 675 shell elements | ~40,400 | 79,926 |
+| `srail_l2.k` | 3 | 675 | 10,044 | 40,494 |
+| `srail_l3.k` | 4 | 675 | 39,102 | 79,926 |
+
+Element counts are the **deformable blank**, which is what refines. The three rigid tools add a
+further 1,265 shells that never change, so the total model is 11,309 and 40,367 elements. Earlier
+revisions of this page quoted those totals against the blank's starting count, which mixed the two
+bases.
 
 The finer deck is not simply "more elements": the smaller elements drive a smaller stable time
 step, so L3 runs roughly twice the steps of L2 as well as four times the elements.
@@ -153,6 +158,21 @@ metric is published for it. It has two jobs:
 Nakajima remains the shell **validation** benchmark and the basis of every accuracy figure in
 [Validation](validation.md). The two cases are doing different jobs, and neither substitutes for
 the other.
+
+**Reading the imagery.** The contour bars are display windows, not the measured extremes. Both
+fields are strongly one-sided — a fraction of a percent of the elements sits far outside the bulk —
+so a bar anchored to the raw minimum and maximum collapses the whole part into one colour. Measured
+over the L3 stroke:
+
+| Field | Full measured range | p1 – p99 | Display window |
+|---|---|---|---|
+| Shell thickness | 0.903 – 1.147 mm | 0.947 – 1.038 | 0.94 – 1.05 |
+| Equivalent plastic strain | 0.000 – 1.925 | 0.000 – 0.520 | 0.00 – 0.30 |
+
+Values outside a window clamp to its end colour, so the thinning and high-strain hot spots saturate
+rather than being averaged away. The mesh is drawn only on the detail views: at ~39,000 elements a
+refined element in the wide framing is a few pixels across, and a one-pixel edge would cover the
+contour it exists to show.
 
 **Reproducing it.** The package ships `run_srail_l2_cuda.bat` and `run_srail_l3_cuda.bat`. Both
 set `FASTGPU_ADPENE=1` and call the solver with `--compute-backend cuda`. Results are written as
