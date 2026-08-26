@@ -266,6 +266,40 @@ Both solvers use a **fully integrated** 4-node shell, so the element formulation
 | Speedup vs best CPU configuration | **4.3×** | **4.1×** |
 | Speedup vs 2-thread CPU | **9.7×** | **10.3×** |
 
+### What the two decks are
+
+Both rows above run the same geometry, the same tools and the same 9.9 ms stroke. What separates
+them is how finely the blank is allowed to refine, and that is easier to see than to tabulate.
+
+<div align="center">
+
+<img src="../assets/srail-shell-thickness-detail.png" width="88%">
+
+**L3 deck at full stroke — 39,102 elements**<br>
+<sub>S-bend flank, where refinement concentrates. Element edges and shell thickness together.</sub>
+
+</div>
+
+Refinement is driven by the deformation, not applied uniformly: the S-bend and the sidewalls carry
+the fine mesh while the flange keeps its original cells. The 2-to-1 transitions between refinement
+levels are visible along the boundaries.
+
+<div align="center">
+
+<img src="../assets/srail-l2-shell-thickness-animation.gif" width="88%">
+
+**L2 deck through the stroke — 675 → 10,044 elements**<br>
+<sub>The mesh refining as the draw proceeds, with shell thickness on the same colour scale.</sub>
+
+</div>
+
+The coarse deck is shown as the animation for a reason: at ~10,000 elements a cell is wide enough
+on screen to carry both its own edges and the contour. On the L3 deck the elements are half that
+size, and drawn edges would cover the field entirely — which is why the L3 view above is a closeup
+and the [README](../README.md) animations carry no mesh at all.
+
+Full-resolution clip: [L2 with mesh, MP4](../assets/srail-l2-shell-thickness-animation.mp4).
+
 ### OpenRadioss CPU scaling
 
 | CPU threads | L2 deck [s] | MinuteSim speedup | L3 deck [s] | MinuteSim speedup |

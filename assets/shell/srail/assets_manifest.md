@@ -57,10 +57,10 @@ windows were chosen.
 
 ## Generated files
 
-The element mesh is drawn **only on the detail views** — see *Element mesh* below. The media are
-published one level up, in `assets/`, alongside the other README images; this directory keeps the
-script and this record. Re-running the script rewrites the published files in place, under the
-same names.
+The element mesh is drawn on the detail views and on the coarse-deck animation, and nowhere else —
+see *Element mesh* below. The media are published one level up, in `assets/`, alongside the other
+README images; this directory keeps the script and this record. Re-running the script rewrites the
+published files in place, under the same names.
 
 | Published file (in `assets/`) | Dimensions | Size | Mesh | Content |
 |---|---|---|---|---|
@@ -72,11 +72,18 @@ same names.
 | `srail-shell-eqp-animation.gif` | 800 wide | 2.21 MB | no | 79 frames, looping |
 | `srail-shell-thickness-animation.mp4` | 1600 × 900 | 0.97 MB | no | H.264, 24 fps, 9.8 s, 236 frames |
 | `srail-shell-eqp-animation.mp4` | 1600 × 900 | 1.10 MB | no | H.264, 24 fps, 9.8 s, 236 frames |
-| `render_srail_fullstroke.py` | — | 14 KB | — | The script that produces all of the above |
+| `srail-l2-shell-thickness-animation.gif` | 800 wide | 2.49 MB | **yes** | 40 frames, looping — linked from `docs/performance.md` |
+| `srail-l2-shell-thickness-animation.mp4` | 1600 × 900 | 2.91 MB | **yes** | H.264, 24 fps, 120 frames |
+| `render_srail_fullstroke.py` | — | 15 KB | — | The script that produces all of the above |
+
+The two `srail-l2-*` files are the **coarse** deck (`srail_l2.k`, `MAXLVL 3`, 675 → 10,044
+elements) and are the only animation drawn **with** the element mesh — see *Element mesh* below.
+Everything else on this page is the L3 deck.
 
 `_frames_thickness/` and `_frames_eqp/` sit beside the script and hold the 236 rendered PNG frames
-per field, at 1600 × 900. They are regenerable intermediates kept only so the clips can be
-re-encoded without re-rendering, and they are not committed.
+per field, at 1600 × 900; `_frames_l2_thickness/` and `_frames_l2_eqp/` hold the L2 deck's 120.
+They are regenerable intermediates kept only so the clips can be re-encoded without re-rendering,
+and they are not committed.
 
 ## Presentation choices
 
@@ -95,6 +102,11 @@ and the refined region renders as a solid dark mass — precisely over the S-ben
 matters most. Earlier revisions drew the mesh everywhere and the animations lost their contour to
 it entirely. The closeups are zoomed far enough in for the mesh to read as countable elements, and
 that is where it is now drawn.
+
+**The coarse deck is the exception.** `srail_l2.k` reaches 10,044 elements, so a cell is about
+twice as wide on screen as it is on L3 — enough for the edges and the contour to coexist even in
+the wide framing. Its animation is therefore rendered *with* the mesh (`--anim-edges`), which is
+what makes it show the adaptive refinement developing rather than only the field it drives.
 
 Edge colour is **per field**, because the two fields put their dark end in different places:
 
@@ -141,8 +153,14 @@ read `1 1.0e+00`.
 ## Reproducing
 
 ```
+# L3 deck — the primary assets. No mesh in the wide views.
 pvbatch --force-offscreen-rendering render_srail_fullstroke.py \
-        --src <PACKAGE>/benchmarks/srail/srail_fullstroke.xdmf
+        --src <PACKAGE>/benchmarks/srail/srail_l3.xdmf
+
+# L2 deck — animation only, mesh drawn, output names prefixed srail-l2-
+pvbatch --force-offscreen-rendering render_srail_fullstroke.py \
+        --src <PACKAGE>/benchmarks/srail/srail_l2.xdmf \
+        --tag l2 --anim-edges --only anim
 ```
 
 Rendered with ParaView 6.1.0. Use `pvbatch`, not `pvpython`: an on-screen OpenGL context clamps

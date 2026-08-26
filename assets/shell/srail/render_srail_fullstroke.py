@@ -44,6 +44,10 @@ OUT = os.path.abspath(os.path.join(HERE, "..", ".."))
 BLANK_PID = 6
 TOOL_PIDS = (1, 2, 3)
 
+# Filename infix identifying the deck, e.g. "-l2". Empty means the primary (L3) deck,
+# whose assets keep their established published names. Set by --tag.
+TAG = ""
+
 # Field presentation.
 #
 # Ranges are display windows chosen from the measured distribution, not the raw
@@ -101,6 +105,11 @@ TOOL_COLOR = [0.58, 0.62, 0.69]      # cool neutral grey-blue
 # Edge colour is per field (see FIELDS above) because the two fields put their dominant
 # colour in different places, and an edge that reads well on one disappears on the other.
 EDGES = {"hero": False, "closeup": True, "anim": False}
+
+# The coarse deck is the exception, via --anim-edges. At ~10,000 elements a cell is about
+# twice as wide on screen as it is on the fine deck, so an edge covers a small enough
+# fraction of it for mesh and contour to coexist in the wide framing. That is what makes an
+# animation showing the adaptive refinement itself, rather than only the field driving it.
 EDGE_WIDTH = {"hero": 1.0, "closeup": 1.2, "anim": 1.0}
 
 
@@ -271,8 +280,8 @@ def render_statics(src, blank, tools, tlast, size):
             set_camera(view, b, mode)
             Render(view)
 
-            name = f"srail-shell-{field}.png" if mode == "hero" \
-                else f"srail-shell-{field}-detail.png"
+            suffix = "" if mode == "hero" else "-detail"
+            name = f"srail{TAG}-shell-{field}{suffix}.png"
             path = os.path.join(OUT, name)
             SaveScreenshot(path, view, ImageResolution=size,
                            TransparentBackground=0, CompressionLevel=2)
@@ -309,7 +318,8 @@ def render_animations(src, blank, tools, times, size, stride):
 
         # Frames stay beside this script, not in the published asset folder: they are
         # regenerable scratch that only exists so the clips can be re-encoded.
-        fdir = os.path.join(HERE, f"_frames_{field}")
+        tagdir = TAG.replace("-", "_")
+        fdir = os.path.join(HERE, f"_frames{tagdir}_{field}")
         os.makedirs(fdir, exist_ok=True)
         for i, t in enumerate(frames):
             view.ViewTime = t
@@ -332,10 +342,18 @@ def main():
     ap.add_argument("--quick", action="store_true", help="smaller/faster preview run")
     ap.add_argument("--only", choices=("statics", "anim"),
                     help="render only one product (default: both)")
+    ap.add_argument("--tag", default="",
+                    help="deck infix for output names, e.g. l2 -> srail-l2-shell-*")
+    ap.add_argument("--anim-edges", action="store_true",
+                    help="draw the element mesh in the animation (for coarse decks)")
     args = ap.parse_args()
     SRC = resolve_src(args.src)
 
-    global OUT
+    global OUT, TAG
+    if args.tag:
+        TAG = "-" + args.tag.strip("-")
+    if args.anim_edges:
+        EDGES["anim"] = True
     if args.out:
         OUT = os.path.abspath(args.out)
     os.makedirs(OUT, exist_ok=True)
@@ -352,6 +370,7 @@ def main():
     print(f"timesteps: {len(times)}  (t_last={times[-1]:.6g})")
     print(f"output   : {OUT}")
     print(f"stills   : {size[0]}x{size[1]}    animation: {anim_size[0]}x{anim_size[1]}")
+    print(f"tag      : {TAG or '(none)'}    mesh in animation: {EDGES['anim']}")
 
     if args.only in (None, "statics"):
         print("statics:")
